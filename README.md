@@ -32,26 +32,29 @@ OOUI | B | 0.39.3 `086b4f1` | 2021-07-26
 ### Extensions
 Name | Grade | Version | Last updated
 :--- | :--- | :--- | :---
-[AdvancedSearch](https://www.mediawiki.org/wiki/Extension:AdvancedSearch) | E | N/A | N/A
+[AdvancedSearch](https://www.mediawiki.org/wiki/Extension:AdvancedSearch) | B | REL1_35 `fae6250` | 2021-08-26
 [ApprovedRevs](https://www.mediawiki.org/wiki/Extension:Approved_Revs) | B | N/A | N/A
 [Babel](https://www.mediawiki.org/wiki/Extension:Babel) | B | MLEB 2021.07 | 2021-07-29
-[Capiunto](https://www.mediawiki.org/wiki/Extension:Capiunto) | E | N/A | N/A
+[Capiunto](https://www.mediawiki.org/wiki/Extension:Capiunto) | B | REL1_35 `30049a7` | 2021-08-26
+[Cargo](https://www.mediawiki.org/wiki/Extension:Cargo) | B | REL1_35 `df13273` | 2021-08-31
 [CategoryTree](https://www.mediawiki.org/wiki/Extension:CategoryTree) | B | N/A | N/A
 [Cite](https://www.mediawiki.org/wiki/Extension:Cite) | A | N/A | N/A
 [CleanChanges](https://www.mediawiki.org/wiki/Extension:CleanChanges) | B | MLEB 2021.07 | 2021-07-29
-[CodeMirror](https://www.mediawiki.org/wiki/Extension:CodeMirror) | D | N/A | N/A
+[CodeMirror](https://www.mediawiki.org/wiki/Extension:CodeMirror) | A | REL1_35 `a326407` | 2021-08-25
 [CookieWarning](https://www.mediawiki.org/wiki/Extension:CookieWarning) | A | N/A | N/A
 [DismissableSiteNotice](https://www.mediawiki.org/wiki/Extension:DismissableSiteNotice) | A | N/A | N/A
-[Echo](https://www.mediawiki.org/wiki/Extension:Echo) | E | N/A | N/A
+[Echo](https://www.mediawiki.org/wiki/Extension:Echo) | A | REL1_35 `347c30e` | 2021-08-11
 [Flow (StructuredDiscussions)](https://www.mediawiki.org/wiki/Extension:StructuredDiscussions) | E | N/A | N/A
 [Graph](https://www.mediawiki.org/wiki/Extension:Graph) | D | N/A | N/A
 [Lingo](https://www.mediawiki.org/wiki/Extension:Lingo) | E | N/A | N/A
+[MsUpload](https://www.mediawiki.org/wiki/Extension:MsUpload) | A | REL1_35 `32eb420` | 2021-08-25
 [MultimediaViewer](https://www.mediawiki.org/wiki/Extension:MultimediaViewer) | C | N/A | N/A
-[OAuth](https://www.mediawiki.org/wiki/Extension:OAuth) | D | N/A | N/A
-[Popups](https://www.mediawiki.org/wiki/Extension:Popups) | D | N/A | N/A
-[RelatedArticles](https://www.mediawiki.org/wiki/Extension:RelatedArticles) | D | N/A | N/A
+[OAuth](https://www.mediawiki.org/wiki/Extension:OAuth) | B | REL1_35 `451ed95` | 2021-08-31
+[Popups](https://www.mediawiki.org/wiki/Extension:Popups) | A | REL1_35 `dccd607` | 2021-09-02
+[RelatedArticles](https://www.mediawiki.org/wiki/Extension:RelatedArticles) | A | REL1_35 `0f27333` | 2021-08-31
 [Semantic MediaWiki](https://www.mediawiki.org/wiki/Extension:Semantic_MediaWiki) | E | N/A | N/A
 [Semantic Result Formats](https://www.mediawiki.org/wiki/Extension:Semantic_Result_Formats) | E | N/A | N/A
+[SyntaxHighlight](https://www.mediawiki.org/wiki/Extension:SyntaxHighlight) | A | REL1_35 `05598b3` | 2021-08-26
 [Tabber](https://www.mediawiki.org/wiki/Extension:Tabber) | A | N/A | N/A
 [TabberNeue](https://www.mediawiki.org/wiki/Extension:TabberNeue) | A | 1.0.1 `0dc1b34` | 2021-06-21
 [TimedMediaHandler](https://www.mediawiki.org/wiki/Extension:TimedMediaHandler) | D | N/A | N/A
@@ -59,9 +62,10 @@ Name | Grade | Version | Last updated
 [UniversalLanguageSelector](https://www.mediawiki.org/wiki/Extension:UniversalLanguageSelector) | B | MLEB 2021.07 | 2021-07-29
 [UploadWizard](https://www.mediawiki.org/wiki/Extension:UploadWizard) | C | N/A | N/A
 [VisualEditor](https://www.mediawiki.org/wiki/Extension:VisualEditor) | A | REL1_35 `cc3466a` | 2021-08-04
-[WikiEditor](https://www.mediawiki.org/wiki/Extension:WikiEditor) | E | N/A | N/A
+[WikiEditor](https://www.mediawiki.org/wiki/Extension:WikiEditor) | B | REL1_35 `e18315e` | 2021-08-11
 
 Some of the field are tagged as N/A because the information was not tracked before.
+If you are interested in adding skinstyles, please check out [this page on the wiki](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/wiki/Adding-extension-SkinStyles)!
 
 ## Installation
 1. [Download](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/archive/main.zip) place the file(s) in a directory called `Citizen` in your `skins/` folder.

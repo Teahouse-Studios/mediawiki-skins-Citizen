@@ -22,8 +22,8 @@
 	"citizen-sitestats-users-label": "名用户",
 	"citizen-sitestats-edits-label": "次编辑",
 	"citizen-drawer-search": "搜索菜单",
-	"citizen-footer-desc": "在[[MediaWiki:Citizen-footer-desc/zh-hans]]编辑此文本",
-	"citizen-footer-tagline": "在[[MediaWiki:Citizen-footer-tagline/zh-hans]]编辑此文本",
+	"citizen-footer-desc": "在[[MediaWiki:Citizen-footer-desc]]编辑此文本",
+	"citizen-footer-tagline": "在[[MediaWiki:Citizen-footer-tagline]]编辑此文本",
 	"citizen-action-addsection": "添加话题",
 	"citizen-jumptotop": "回到顶部",
 	"citizen-search-fulltext": "搜索包含",
@@ -41,5 +41,6 @@
 	"prefs-citizen-theme-option-dark": "夜间",
 	"prefs-citizen-fontsize-label": "字体大小",
 	"prefs-citizen-pagewidth-label": "页面宽度",
+	"prefs-citizen-lineheight-label": "行高",
 	"prefs-citizen-resetbutton-label": "重置到默认"
 }

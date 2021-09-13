@@ -49,6 +49,24 @@
 @color-surface-2--hover: ~'hsl( 210, 17%, 'unit( 98 + @diff-hoverstate, % )~' )';
 @color-surface-2--active: ~'hsl( 210, 17%, 'unit( 98 - @diff-hoverstate, % )~' )';
 
+/*
+ * Syntax highlight colors
+ * Based on Material Theme Lighter
+ * https://material-theme.site
+*/
+@color-syntax-red: #e53935;
+@color-syntax-orange: #f76d47;
+@color-syntax-yellow: #e2931d;
+@color-syntax-green: #91b859;
+@color-syntax-cyan: #39adb5;
+@color-syntax-blue: #6182b8;
+@color-syntax-paleblue: #8796b0;
+@color-syntax-purple: #9c3eda;
+@color-syntax-brown: #916b53;
+@color-syntax-pink: #ff5370;
+@color-syntax-violet: #945eb8;
+@color-syntax-grey: #90a4ae;
+
 /* Dark theme */
 @diff-hoverstate-dark: 4;
 
@@ -62,6 +80,24 @@
 
 @color-surface-2-dark--hover: ~'hsl( 208, 14%, 'unit( 18 + @diff-hoverstate-dark, % )~' )';
 @color-surface-2-dark--active: ~'hsl( 208, 14%, 'unit( 18 - @diff-hoverstate-dark, % )~' )';
+
+/*
+ * Syntax highlight colors
+ * Based on Material Theme Palenight
+ * https://material-theme.site
+*/
+@color-syntax-red-dark: #f07178;
+@color-syntax-orange-dark: #f78c6c;
+@color-syntax-yellow-dark: #ffcb6b;
+@color-syntax-green-dark: #c3e88d;
+@color-syntax-cyan-dark: #89ddff;
+@color-syntax-blue-dark: #82aaff;
+@color-syntax-paleblue-dark: #b2ccd6;
+@color-syntax-purple-dark: #c792ea;
+@color-syntax-brown-dark: #916b53;
+@color-syntax-pink-dark: #ff9cac;
+@color-syntax-violet-dark: #bb80b3;
+@color-syntax-grey-dark: #676E95;
 
 /**
  * Based WikimediaUI (`wmui`) color palette
@@ -123,9 +159,9 @@
 
 @background-color-input: 			rgba( 255, 255, 255, 0.5 );
 
-@background-color-icon:				rgba( 0, 0, 0, 0.4 );
-@background-color-icon--hover:		rgba( 0, 0, 0, 0.6 );
-@background-color-icon--active:		rgba( 0, 0, 0, 0.8 );
+@background-color-icon:				rgba( 0, 0, 0, 0.6 );
+@background-color-icon--hover:		rgba( 0, 0, 0, 0.8 );
+@background-color-icon--active:		rgba( 0, 0, 0, 1 );
 @background-color-quiet: 			transparent;
 @background-color-quiet--hover:		rgba( 0, 0, 0, 0.07 );
 @background-color-quiet--active:	rgba( 0, 0, 0, 0.09 );
@@ -160,10 +196,10 @@
 @color-link-new--active:	@color-red30;
 
 /* Opacity */
-@opacity-base--disabled:	0.2;
-@opacity-icon-base:			0.4;
-@opacity-icon-base--hover:	0.6;
-@opacity-icon-base--active:	0.8;
+@opacity-base--disabled:	0.3;
+@opacity-icon-base:			0.6;
+@opacity-icon-base--hover:	0.8;
+@opacity-icon-base--active:	1;
 
 /* == Box model properties == */
 /* `--*size` variables are used for `*width` & `*height` properties. */
@@ -285,9 +321,9 @@
 
 @dark-background-color-input: 			rgba( 0, 0, 0, 0.5 );
 
-@dark-background-color-icon:			rgba( 255, 255, 255, 0.4 );
-@dark-background-color-icon--hover:		rgba( 255, 255, 255, 0.6 );
-@dark-background-color-icon--active:	rgba( 255, 255, 255, 0.2 );
+@dark-background-color-icon:			rgba( 255, 255, 255, 0.6 );
+@dark-background-color-icon--hover:		rgba( 255, 255, 255, 0.8 );
+@dark-background-color-icon--active:	rgba( 255, 255, 255, 0.4 );
 // @dark-background-color-quiet: 			transparent;
 @dark-background-color-quiet--hover:	rgba( 255, 255, 255, 0.07 );
 @dark-background-color-quiet--active:	rgba( 255, 255, 255, 0.03 );
@@ -314,7 +350,7 @@
 /* Opacity */
 // @dark-opacity-icon-base:			0.4;
 // @dark-opacity-icon-base--hover:		0.6;
-@dark-opacity-icon-base--active:	0.2;
+@dark-opacity-icon-base--active:	0.4;
 
 /* Border colors */
 @dark-border-color-base:			rgba( 255, 255, 255, 0.05 );

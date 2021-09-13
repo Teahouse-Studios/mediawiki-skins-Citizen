@@ -6,7 +6,9 @@
 			"Joseph",
 			"Melissadilara",
 			"Mim.saitkilic",
-			"Sadrettin"
+			"Sadrettin",
+			"SaldırganSincap",
+			"Sayginer"
 		]
 	},
 	"skinname-citizen": "Citizen",
@@ -22,8 +24,8 @@
 	"citizen-sitestats-users-label": "kullanıcılar",
 	"citizen-sitestats-edits-label": "değişiklikler",
 	"citizen-drawer-search": "Arama menüsü",
-	"citizen-footer-desc": "Bu metni [[MediaWiki:Citizen-footer-desc/tr]] üzerinde düzenle",
-	"citizen-footer-tagline": "Bu metni [[MediaWiki:Citizen-footer-tagline/tr]] üzerinde düzenle",
+	"citizen-footer-desc": "Bu metni [[MediaWiki:Citizen-footer-desc]] üzerinde düzenleyin",
+	"citizen-footer-tagline": "Bu metni [[MediaWiki:Citizen-footer-tagline]] üzerinde düzenleyin",
 	"citizen-action-addsection": "Konu ekle",
 	"citizen-jumptotop": "Başa dön",
 	"citizen-search-fulltext": "İçeren sayfaları ara",
@@ -41,5 +43,6 @@
 	"prefs-citizen-theme-option-dark": "Koyu",
 	"prefs-citizen-fontsize-label": "Yazı tipi boyutu",
 	"prefs-citizen-pagewidth-label": "Sayfa genişliği",
+	"prefs-citizen-lineheight-label": "Satır yüksekliği",
 	"prefs-citizen-resetbutton-label": "Varsayılana sıfırla"
 }
