@@ -24,6 +24,7 @@
 use Citizen\GetConfigTrait;
 use Citizen\Partials\BodyContent;
 use Citizen\Partials\Drawer;
+use Citizen\Partials\FirstHeading;
 use Citizen\Partials\Footer;
 use Citizen\Partials\Header;
 use Citizen\Partials\Logos;
@@ -71,10 +72,12 @@ class SkinCitizen extends SkinMustache {
 	public function getTemplateData(): array {
 		$out = $this->getOutput();
 		$title = $out->getTitle();
+		$parentData = parent::getTemplateData();
 
 		$header = new Header( $this );
 		$logos = new Logos( $this );
 		$drawer = new Drawer( $this );
+		$firstHeading = new FirstHeading( $this );
 		$tagline = new Tagline( $this );
 		$bodycontent = new BodyContent( $this );
 		$footer = new Footer( $this );
@@ -98,7 +101,7 @@ class SkinCitizen extends SkinMustache {
 		// Conditionally used values must use null to indicate absence (not false or '').
 		$newTalksHtml = $this->getNewtalks() ?: null;
 
-		return parent::getTemplateData() + [
+		return $parentData + [
 			'msg-sitetitle' => $this->msg( 'sitetitle' )->text(),
 			'html-mainpage-attributes' => Xml::expandAttributes(
 				Linker::tooltipAndAccesskeyAttribs( 'p-logo' ) + [
@@ -115,7 +118,9 @@ class SkinCitizen extends SkinMustache {
 				'msg-citizen-jumptotop' => $this->msg( 'citizen-jumptotop' )->text() . ' [home]',
 			],
 
-			'data-pagetools' => $tools->buildPageTools(),
+			'html-title--formatted' => $firstHeading->buildFirstHeading( $parentData[ 'html-title' ] ),
+
+			'data-pagetools' => $tools->buildPageTools( $parentData ),
 
 			'html-newtalk' => $newTalksHtml ? '<div class="usermessage">' . $newTalksHtml . '</div>' : '',
 			'page-langcode' => $title->getPageViewLanguage()->getHtmlCode(),

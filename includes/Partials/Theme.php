@@ -25,8 +25,6 @@ declare( strict_types=1 );
 
 namespace Citizen\Partials;
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * Theme switcher partial of Skin Citizen
  */
@@ -41,15 +39,6 @@ final class Theme extends Partial {
 	public function setSkinTheme( array &$options ) {
 		// Set theme to site theme
 		$theme = $this->getConfigValue( 'CitizenThemeDefault' ) ?? 'auto';
-
-		// Set theme to user theme if registered
-		if ( $this->out->getUser()->isRegistered() ) {
-			$theme = MediaWikiServices::getInstance()->getUserOptionsLookup()->getOption(
-				$this->out->getUser(),
-				'CitizenThemeUser',
-				'auto'
-			);
-		}
 
 		// Add HTML class based on theme set
 		$this->out->addHtmlClasses( 'skin-citizen-' . $theme );

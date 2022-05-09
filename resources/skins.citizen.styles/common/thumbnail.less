@@ -7,8 +7,6 @@ figure,
 		margin: 0 auto;
 
 		a {
-			transition: @transition-box-shadow-quick;
-
 			&.image {
 				overflow: hidden;
 				max-width: inherit;
@@ -17,7 +15,7 @@ figure,
 			}
 
 			&:hover:not( .lazy ):not( .new ) {
-				.boxshadow(2);
+				box-shadow: var( --box-shadow-card );
 
 				img {
 					transform: scale( 1.1 );
@@ -32,7 +30,7 @@ figure,
 				display: block;
 				padding: @margin-side / 2;
 				background-color: var( --background-color-framed );
-				transition: @transition-background-quick, @transition-color-quick;
+				transition: @transition-background, @transition-color;
 			}
 		}
 	}

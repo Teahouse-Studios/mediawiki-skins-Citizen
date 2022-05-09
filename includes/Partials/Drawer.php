@@ -142,11 +142,14 @@ final class Drawer extends Partial {
 		if ( $this->getConfigValue( 'CitizenEnableDrawerSiteStats' ) ) {
 			$stats = [ 'articles', 'images', 'users', 'edits' ];
 			$items = [];
+			$fmt = new \NumberFormatter( 'en_US', \NumberFormatter::PADDING_POSITION );
+			$fmt->setAttribute( \NumberFormatter::ROUNDING_MODE, \NumberFormatter::ROUND_DOWN );
+			$fmt->setAttribute( \NumberFormatter::MAX_FRACTION_DIGITS, 1 );
 
 			foreach ( $stats as &$stat ) {
 				$items[] = [
 					'id' => $stat,
-					'value' => number_format( call_user_func( 'SiteStats::' . $stat ) ),
+					'value' => $this->getSiteStat( $stat ),
 					'label' => $this->skin->msg( "citizen-sitestats-$stat-label" )->text(),
 				];
 			}
@@ -154,6 +157,30 @@ final class Drawer extends Partial {
 
 		$props['array-drawer-sitestats-item'] = $items;
 		return $props;
+	}
+
+	/**
+	 * Get and format sitestat value
+	 * TODO: Formatting should be based on user locale
+	 *
+	 * @param string $key
+	 *
+	 * @return int
+	 */
+	private function getSiteStat( $key ) {
+		$value = call_user_func( 'SiteStats::' . $key );
+
+		if ( $value >= 10000 ) {
+			$fmt = new \NumberFormatter( 'en_US', \NumberFormatter::PADDING_POSITION );
+			$fmt->setAttribute( \NumberFormatter::ROUNDING_MODE, \NumberFormatter::ROUND_DOWN );
+			$fmt->setAttribute( \NumberFormatter::MAX_FRACTION_DIGITS, 1 );
+
+			$value = $fmt->format( $value );
+		} else {
+			$value = number_format( $value );
+		}
+
+		return $value;
 	}
 
 	/**

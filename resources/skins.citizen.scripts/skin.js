@@ -69,7 +69,11 @@ function initCheckboxHack( window ) {
 	}
 
 	checkboxObjs.forEach( ( checkboxObj ) => {
-		if ( checkboxObj.checkbox instanceof HTMLInputElement && checkboxObj.button ) {
+		if (
+			checkboxObj.checkbox instanceof HTMLInputElement &&
+			checkboxObj.button &&
+			checkboxObj.target
+		) {
 			checkboxHack.bindToggleOnClick( checkboxObj.checkbox, checkboxObj.button );
 			checkboxHack.bindUpdateAriaExpandedOnInput( checkboxObj.checkbox, checkboxObj.button );
 			checkboxHack.updateAriaExpanded( checkboxObj.checkbox, checkboxObj.button );
@@ -122,11 +126,6 @@ function main( window ) {
 	}, false );
 
 	mw.loader.load( 'skins.citizen.preferences' );
-
-	// Depreciation messages
-	// TODO: Remove when hard depreciated
-	mw.log.warn( 'CITIZEN: --background-color-dp-XX is depreciated; use --color-surface-X instead.' );
-	mw.log.warn( 'CITIZEN: Security headers will be depreciated in the next version.' );
 }
 
 main( window );

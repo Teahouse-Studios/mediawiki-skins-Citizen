@@ -1,10 +1,11 @@
+@width-search-bar: 500px;
+
 #search {
 	&-checkbox {
 		&:checked {
 			~ #searchform {
 				z-index: 10;
-				pointer-events: auto; // clickable
-				transform: none;
+				.citizen-card-show( false );
 			}
 
 			~ #search-toggle-icon {
@@ -24,7 +25,7 @@
 				}
 
 				&:hover {
-					border-color: @base-0;
+					border-color: #000;
 
 					#search-toggle-icon-3 {
 						opacity: 0;
@@ -71,18 +72,16 @@
 
 	&form {
 		--width-search-bar: @width-search-bar;
-		--height-search-bar: @height-search-bar;
+		--height-search-bar: 42px;
 		position: absolute;
 		z-index: -1; // not interactable
 		top: 0;
 		right: @margin-side / 2;
 		display: flex;
 		margin: var( --margin-header-item ) 0; // 1px h3 screen reader
-		border-radius: var( --border-radius--small );
-		pointer-events: none; // not clickable
-		transform: translateX( 120% );
-		transition: @transition-transform-quick;
-		.boxshadow(4);
+		border-radius: var( --border-radius--medium );
+		box-shadow: var( --box-shadow-dialog );
+		.citizen-card-hide( 100% 0, X );
 
 		&-icon {
 			position: absolute;
@@ -105,7 +104,7 @@
 			background-repeat: no-repeat;
 			background-size: 18px;
 			opacity: var( --opacity-icon-base );
-			transition: @transition-transform-quick, @transition-opacity-quick;
+			transition: @transition-transform, @transition-opacity;
 
 			&:hover {
 				opacity: var( --opacity-icon-base--hover );
@@ -134,7 +133,7 @@
 			align-items: center;
 			justify-content: center;
 			margin-right: 10px;
-			transition: @transition-transform-quick, @transition-height-quick, @transition-opacity-quick, @transition-border-color-quick;
+			transition: @transition-transform, @transition-height, @transition-opacity, @transition-border-color;
 
 			&-1 {
 				top: 6px;
@@ -208,14 +207,15 @@
 		max-width: ~'calc( 100vw - var( --padding-page ) )';
 		height: var( --height-search-bar );
 		padding: 8px ~'calc( var( --height-search-bar ) * 2 )' 8px var( --height-search-bar );
+		border-color: transparent; // Cancel default border
 		appearance: none;
-		border-radius: var( --border-radius--small );
-		transition: @transition-background-quick, @transition-box-shadow-quick;
-		.citizen-card( @border-radius: false );
+		border-radius: var( --border-radius--medium );
 
 		&:focus {
 			outline: 0;
-			.boxshadow(5);
+			// The search suggestion pop-up indicates for focus state
+			// border-color: var( --color-primary );
+			// box-shadow: inset 0 0 0 1px var( --color-primary );
 		}
 	}
 }
@@ -252,21 +252,30 @@
 	}
 }
 
-@media ( max-width: @width-search-bar ) {
-	#search {
-		&form {
-			transition: none; // no transition on mobile
+.citizen-animations-ready {
+	#searchform {
+		.citizen-card-transition();
+	}
+}
 
-			&:before {
-				position: fixed;
-				top: 0;
-				right: 0;
-				bottom: 0;
-				left: 0;
-				display: block;
-				background: rgba( 0, 0, 0, 0.7 );
-				content: '';
-			}
+@media ( max-width: @width-search-bar ) {
+	#searchform {
+		&:before {
+			position: fixed;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			display: block;
+			background: rgba( 0, 0, 0, 0.7 );
+			content: '';
+		}
+
+		// Remove searchbox open animation on mobile
+		// But keep suggestion animation
+		// So user can get to search instantly
+		.citizen-animations-ready & {
+			transition: none;
 		}
 	}
 }

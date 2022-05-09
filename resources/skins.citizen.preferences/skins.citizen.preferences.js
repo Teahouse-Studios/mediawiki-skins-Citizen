@@ -53,14 +53,14 @@ function convertPref( pref ) {
  * @return {Object} pref
  */
 function getPref() {
-	const htmlStyle = window.getComputedStyle( document.documentElement ),
+	const style = window.getComputedStyle( document.documentElement ),
 		pref = {};
 
 	// It is already set in theme.js in skins.citizen.scripts
 	pref.theme = localStorage.getItem( 'skin-citizen-theme' );
-	pref.fontsize = localStorage.getItem( 'skin-citizen-fontsize' ) ?? htmlStyle.getPropertyValue( 'font-size' );
-	pref.pagewidth = localStorage.getItem( 'skin-citizen-pagewidth' ) ?? htmlStyle.getPropertyValue( '--width-layout' );
-	pref.lineheight = localStorage.getItem( 'skin-citizen-lineheight' ) ?? htmlStyle.getPropertyValue( '--line-height' );
+	pref.fontsize = localStorage.getItem( 'skin-citizen-fontsize' ) ?? style.getPropertyValue( 'font-size' );
+	pref.pagewidth = localStorage.getItem( 'skin-citizen-pagewidth' ) ?? style.getPropertyValue( '--width-layout' );
+	pref.lineheight = localStorage.getItem( 'skin-citizen-lineheight' ) ?? style.getPropertyValue( '--line-height' );
 
 	return pref;
 }
@@ -121,8 +121,8 @@ function resetPref() {
 	const keys = [ 'fontsize', 'pagewidth', 'lineheight' ],
 		keyPrefix = 'skin-citizen-';
 
-	// Remove inline style
-	document.documentElement.removeAttribute( 'style' );
+	// Remove style
+	document.getElementById( 'citizen-style' )?.remove();
 
 	// Remove localStorage
 	keys.forEach( ( key ) => {
@@ -256,11 +256,12 @@ function initPanel( event ) {
 	// To Mustache is to jQuery sigh
 	// TODO: Use ES6 template literals when RL does not screw up multiline
 	const panel = template.render( data ).get()[ 1 ];
+
 	// Attach panel after button
 	event.currentTarget.parentNode.insertBefore( panel, event.currentTarget.nextSibling );
 
 	// Set up initial state
-	document.getElementById( 'citizen-pref-theme__input__' + prefValue.theme ).checked = true;
+	document.getElementById( 'citizen-pref-theme__input__' + ( prefValue.theme ?? 'auto' ) ).checked = true;
 	keys.forEach( ( key ) => {
 		setIndicator( key, pref[ key ] );
 		setInputValue( key, prefValue[ key ] );
@@ -320,6 +321,7 @@ function initPref( window ) {
 			container.id = 'citizen-pref';
 			button.id = 'citizen-pref-toggle';
 			button.classList.add( 'mw-header-button' );
+			button.setAttribute( 'aria-label', mw.message( 'preferences' ).text() );
 			button.setAttribute( 'aria-controls', 'citizen-pref-panel' );
 			button.setAttribute( 'aria-expanded', false );
 			container.prepend( button );

@@ -5,24 +5,28 @@
 	position: absolute;
 	z-index: 101;
 	top: 100%;
-	display: none;
 	overflow: auto;
 	width: 100%;
 	max-height: ~'calc( 100vh - var( --height-header ) )';
 	box-sizing: border-box;
-	margin-top: -2px;
-	border-radius: 0 0 var( --border-radius--large ) var( --border-radius--large );
-	.citizen-card( @border-radius: false );
+	padding-top: 12px;
+	margin-top: -12px;
+	//border-radius: 0 0 var( --border-radius--medium ) var( --border-radius--medium );
+	.citizen-card;
+	.citizen-card-hide( 50% 0, Y );
+	// Well this won't be loaded before .citizen-animation-ready anyways
+	.citizen-card-transition();
 
 	&-suggestion {
 		padding-top: 6px;
 		padding-bottom: 6px;
+		opacity: 0;
 
 		&__thumbnail {
 			overflow: hidden;
 			height: 60px;
 			background-color: #eaecf0;
-			border-radius: var( --border-radius--small );
+			border-radius: var( --border-radius--medium );
 
 			img,
 			source {
@@ -103,17 +107,10 @@
 	}
 
 	&--expanded {
-		display: block;
-	}
+		.citizen-card-show( false );
 
-	// Use to hide rounded corner from searchbox
-	&:before {
-		position: absolute;
-		width: var( --width-search-bar );
-		height: var( --border-radius--small );
-		margin-top: ~'calc( var( --border-radius--small ) * -1 )';
-		margin-left: -1px;
-		background: var( --color-surface-1 );
-		content: '';
+		.citizen-typeahead-suggestion {
+			.citizen-card-content-show;
+		}
 	}
 }
