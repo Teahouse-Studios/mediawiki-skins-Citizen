@@ -188,17 +188,22 @@
 @opacity-icon-base--hover:	0.8;
 @opacity-icon-base--active:	1;
 
+/* Z-Index */
+// @z-index-base: 0; - WMUI
+@z-index-page-header: 11;
+@z-index-site-header: 91;
+@z-index-overlay: 101; // WMUI
+
 /* == Box model properties == */
 /* `--*size` variables are used for `*width` & `*height` properties. */
-@size-icon:		20px;
+@size-icon:		1.25rem;
 // Not in the header section it is also used outside of header
-@height-header:	56px;
+@height-header:	3.5rem;
 @width-layout:	@width-breakpoint-desktop - 2 * @padding-page;
 @width-toc: @width-breakpoint-desktop-wide - @width-breakpoint-desktop;
 
 /* Paddings */
 @padding-page:	20px;
-
 @line-height: 1.6;
 
 /* Border */
@@ -335,7 +340,7 @@
 @html-font-size: 100%;
 @margin-side: 20px;
 @footer-width: 1290px;
-@icon-size: 18px;
+@icon-size: 1.125rem; // 18px, TODO: Replace this var
 @icon-box-size: @icon-size + @icon-margin * 2;
 @icon-margin: 3px;
 @icon-padding: 15px;
@@ -359,8 +364,6 @@
 @content-h6-size: 1.6rem * @content-scaling;
 @content-body-size: 1.6rem * @content-scaling;
 @content-lead-paragraph-size: 1.8rem * @content-scaling;
-@content-quote-primary-size: 2rem * @content-scaling;
-@content-quote-secondary-size: 1.4rem * @content-scaling;
 @content-caption-size: 1.3rem * @content-scaling;
 @content-small-text-size: 1.3rem * @content-scaling;
 @content-monospace-size: 1.4rem * @content-scaling;

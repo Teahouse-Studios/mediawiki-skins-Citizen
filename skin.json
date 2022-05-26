@@ -1,6 +1,6 @@
 {
 	"name": "Citizen",
-	"version": "1.15.0",
+	"version": "1.17.3",
 	"author": [
 		"[https://www.mediawiki.org/wiki/User:Alistair3149 Alistair3149]",
 		"[https://www.mediawiki.org/wiki/User:Octfx Octfx]",
@@ -38,12 +38,12 @@
 						"skins.citizen.icons.sitestats"
 					],
 					"messages": [
+						"citizen-actions-more-toggle",
 						"citizen-drawer-toggle",
-						"citizen-drawer-search",
+						"citizen-jumptotop",
+						"citizen-languages-toggle",
 						"citizen-personalmenu-toggle",
-						"citizen-search-toggle",
-						"citizen-theme-toggle",
-						"citizen-jumptotop"
+						"citizen-search-toggle"
 					]
 				}
 			]
@@ -55,8 +55,7 @@
 		]
 	},
 	"AutoloadClasses": {
-		"SkinCitizen": "includes/SkinCitizen.php",
-		"Citizen\\ApiWebappManifest": "includes/api/ApiWebappManifest.php"
+		"SkinCitizen": "includes/SkinCitizen.php"
 	},
 	"AutoloadNamespaces": {
 		"Citizen\\": "includes/"
@@ -66,7 +65,7 @@
 	},
 	"APIModules": {
 		"webapp-manifest": {
-			"class": "Citizen\\ApiWebappManifest"
+			"class": "Citizen\\Api\\ApiWebappManifest"
 		}
 	},
 	"HookHandlers": {
@@ -188,18 +187,11 @@
 					"name": "resources/skins.citizen.scripts/config.json",
 					"callback": "Citizen\\Hooks\\ResourceLoaderHooks::getCitizenResourceLoaderConfig"
 				},
-				"resources/skins.citizen.scripts/theme.js",
+				"resources/skins.citizen.scripts/checkboxHack.js",
+				"resources/skins.citizen.scripts/scrollObserver.js",
+				"resources/skins.citizen.scripts/sectionObserver.js",
 				"resources/skins.citizen.scripts/search.js",
-				"resources/skins.citizen.scripts/checkboxHack.js"
-			],
-			"targets": [
-				"desktop",
-				"mobile"
-			]
-		},
-		"skins.citizen.scripts.toc": {
-			"scripts": [
-				"resources/skins.citizen.scripts.toc/skins.citizen.scripts.toc.js"
+				"resources/skins.citizen.scripts/tableOfContents.js"
 			],
 			"targets": [
 				"desktop",
@@ -239,7 +231,8 @@
 			],
 			"messages": [
 				"citizen-search-fulltext",
-				"citizen-search-fulltext-empty"
+				"citizen-search-fulltext-empty",
+				"search-redirect"
 			],
 			"targets": [
 				"desktop",
@@ -283,10 +276,11 @@
 						"rtl": "resources/skins.citizen.icons/toc-rtl.svg"
 					}
 				},
-				"#personalmenu-button:after": "resources/skins.citizen.icons/shared/userAvatar.svg",
-				"#searchform-icon": "resources/skins.citizen.icons/shared/search.svg",
-				"#searchform-random": "resources/skins.citizen.icons/shared/random.svg",
-				".page-actions-more:before": "resources/skins.citizen.icons/more.svg"
+				"#citizen-personalMenu__buttonCheckbox:after": "resources/skins.citizen.icons/shared/userAvatar.svg",
+				".citizen-search__icon:after": "resources/skins.citizen.icons/shared/search.svg",
+				".citizen-search__random:after": "resources/skins.citizen.icons/shared/random.svg",
+				"#citizen-languages__buttonCheckbox:after": "resources/skins.citizen.icons/shared/language.svg",
+				"#page-actions-more__buttonCheckbox:after": "resources/skins.citizen.icons/more.svg"
 			}
 		},
 		"skins.citizen.icons.ca": {
@@ -465,7 +459,7 @@
 		},
 		"skins.citizen.icons.sitestats": {
 			"class": "ResourceLoaderImageModule",
-			"selector": "#sitestats-{name}:before",
+			"selector": "#citizen-siteStats__item--{name}:before",
 			"useDataURI": false,
 			"images": {
 				"articles": {
@@ -510,8 +504,8 @@
 			"+ext.CodeMirror.lib": "skinStyles/extensions/CodeMirror/ext.CodeMirror.lib.less",
 			"+ext.CodeMirror.mode.mediawiki": "skinStyles/extensions/CodeMirror/ext.CodeMirror.mode.mediawiki.less",
 			"+ext.CodeMirror.visualEditor.init": "skinStyles/extensions/CodeMirror/ext.CodeMirror.visualEditor.init.less",
-			"+ext.discussionTools.init": "skinStyles/extensions/DiscussionTools/ext.discussionTools.init",
-			"+ext.discussionTools.ReplyWidget": "skinStyles/extensions/DiscussionTools/ext.discussionTools.ReplyWidget",
+			"+ext.discussionTools.init": "skinStyles/extensions/DiscussionTools/ext.discussionTools.init.less",
+			"+ext.discussionTools.ReplyWidget": "skinStyles/extensions/DiscussionTools/ext.discussionTools.ReplyWidget.less",
 			"+ext.dismissableSiteNotice.styles": "skinStyles/extensions/DismissableSiteNotice/ext.dismissableSiteNotice.less",
 			"+ext.echo.ui.desktop": "skinStyles/extensions/Echo/ext.echo.ui.desktop.less",
 			"+ext.echo.ui": "skinStyles/extensions/Echo/ext.echo.ui.less",
@@ -528,6 +522,7 @@
 			"+ext.flow": "skinStyles/extensions/Flow/ext.flow.less",
 			"+ext.flow.visualEditor": "skinStyles/extensions/Flow/ext.flow.visualEditor.less",
 			"+ext.graph.styles": "skinStyles/extensions/Graph/ext.graph.styles.less",
+			"+ext.interwiki.specialpage": "skinStyles/extensions/Interwiki/ext.interwiki.specialpage.less",
 			"+ext.Lingo": "skinStyles/extensions/Lingo/ext.Lingo.less",
 			"+ext.pygments": "skinStyles/extensions/SyntaxHighlight_GeSHi/ext.pygments.less",
 			"+ext.MsUpload": "skinStyles/extensions/MsUpload/ext.MsUpload.less",
@@ -613,6 +608,8 @@
 			"+ext.uls.interlanguage": "skinStyles/extensions/UniversalLanguageSelector/ext.uls.interlanguage.less",
 			"+ext.uls.languagesettings": "skinStyles/extensions/UniversalLanguageSelector/ext.uls.languagesettings.less",
 			"+ext.uls.setlang": "skinStyles/extensions/UniversalLanguageSelector/ext.uls.setlang.less",
+			"+jquery.ime": "skinStyles/extensions/UniversalLanguageSelector/jquery.ime.less",
+			"+jquery.uls": "skinStyles/extensions/UniversalLanguageSelector/jquery.uls.less",
 			"+ext.CookieWarning.styles": "skinStyles/extensions/CookieWarning/ext.CookieWarning.styles.less",
 			"+ext.popups.main": "skinStyles/extensions/Popups/ext.popups.main.less",
 			"+ext.PortableInfobox.styles": "skinStyles/extensions/PortableInfobox/ext.PortableInfobox.styles.less",
@@ -621,6 +618,13 @@
 			"+ext.uploadWizard": "skinStyles/extensions/UploadWizard/ext.uploadWizard.less",
 			"+ext.uploadWizard.page.styles": "skinStyles/extensions/UploadWizard/uploadWizard.noWizard.less",
 			"+ext.visualEditor.desktopArticleTarget.init": "skinStyles/extensions/VisualEditor/ext.visualEditor.less",
+			"+wikibase.client.init": "skinStyles/extensions/Wikibase/wikibase.client.init.less",
+			"+jquery.wikibase.linkitem": "skinStyles/extensions/Wikibase/jquery.wikibase.linkitem.less",
+			"+jquery.wikibase.entityselector": "skinStyles/extensions/Wikibase/jquery.wikibase.entityselector.less",
+			"+jquery.wikibase.toolbar.styles": "skinStyles/extensions/Wikibase/jquery.wikibase.toolbar.styles.less",
+			"+wikibase.common": "skinStyles/extensions/Wikibase/wikibase.common.less",
+			"+wikibase.mobile": "skinStyles/extensions/Wikibase/wikibase.mobile.less",
+			"+wikibase.view.ControllerViewFactory": "skinStyles/extensions/Wikibase/wikibase.view.ControllerViewFactory.less",
 			"+ext.wikiEditor": "skinStyles/extensions/WikiEditor/ext.wikiEditor.less",
 			"+capiunto.infobox.main": "skinStyles/extensions/Capiunto/capiunto.infobox.main.less",
 			"mobile.init.styles": "skinStyles/extensions/MobileFrontend/mobile.init.styles.less",
@@ -730,16 +734,10 @@
 			"descriptionmsg": "citizen-config-showpagetools",
 			"public": true
 		},
-		"PortalAttach": {
-			"value": "first",
-			"description": "Label of the portal to attach links to upload and special pages to",
-			"descriptionmsg": "citizen-config-portalattach",
-			"public": true
-		},
-		"EnableDrawerSubSearch": {
-			"value": false,
-			"description": "Enables to search the drawer for menu entries",
-			"descriptionmsg": "citizen-config-enabledrawersubsearch",
+		"SiteToolsPortlet": {
+			"value": "",
+			"description": "ID of the portlet to attach the site tools",
+			"descriptionmsg": "citizen-config-sitetoolsportlet",
 			"public": true
 		},
 		"EnableCollapsibleSections": {

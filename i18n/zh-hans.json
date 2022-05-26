@@ -6,6 +6,7 @@
 			"Gaoyu",
 			"Grace03",
 			"Lakejason0",
+			"StarrySky",
 			"Yfdyh000"
 		]
 	},
@@ -16,12 +17,12 @@
 	"citizen-drawer-toggle": "切换菜单",
 	"citizen-personalmenu-toggle": "切换个人菜单",
 	"citizen-search-toggle": "切换搜索",
-	"citizen-theme-toggle": "切换主题颜色",
+	"citizen-languages-toggle": "更多语言",
+	"citizen-actions-more-toggle": "更多操作",
 	"citizen-sitestats-articles-label": "篇文章",
 	"citizen-sitestats-images-label": "个文件",
 	"citizen-sitestats-users-label": "名用户",
 	"citizen-sitestats-edits-label": "次编辑",
-	"citizen-drawer-search": "搜索菜单",
 	"citizen-footer-desc": "在[[MediaWiki:Citizen-footer-desc]]编辑此文本",
 	"citizen-footer-tagline": "在[[MediaWiki:Citizen-footer-tagline]]编辑此文本",
 	"citizen-action-addsection": "添加话题",

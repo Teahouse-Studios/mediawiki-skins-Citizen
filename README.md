@@ -1,9 +1,9 @@
 # Citizen
-![](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/workflows/MediaWiki%20CI/badge.svg) [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![MediaWiki: >=1.35.0](https://img.shields.io/badge/MediaWiki-%3E%3D1.35.2-%2336c)](https://www.mediawiki.org)
+[![](https://img.shields.io/github/contributors/badges/shields.svg)](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/graphs/contributors) ![](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/workflows/MediaWiki%20CI/badge.svg) [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![MediaWiki: >=1.35.0](https://img.shields.io/badge/MediaWiki-%3E%3D1.35.2-%2336c)](https://www.mediawiki.org)
 
 Citizen is a responsive skin for [MediaWiki](https://www.mediawiki.org) built by the [Star Citizen Wiki](https://starcitizen.tools) team. Although it is specifically built for the Star Citizen Wiki, the skin is designed to be flexible to run on any Mediawiki installation that is **1.35.2 or higher**. Due to resource constraints, we might not be able to provide full support for setups that are vastly different than us, but please feel free to submit patches or bug report!
 
-Live demo can be seen at the [Star Citizen Wiki](https://star-citizen.wiki), more avaliable [here](https://wikiapiary.com/wiki/Skin:Citizen).
+Live demo can be seen at the [Star Citizen Wiki](https://starcitizen.tools), more avaliable [here](https://wikiapiary.com/wiki/Skin:Citizen).
 
 ## Notable features
 - **Fully responsive skin**: Responsive and able to adapt to different screen sizes. 📱💻🖥️
@@ -45,6 +45,7 @@ Name | Grade | Version | Last updated
 [Echo](https://www.mediawiki.org/wiki/Extension:Echo) | A | REL1_35 `347c30e` | 2021-08-11
 [Flow (StructuredDiscussions)](https://www.mediawiki.org/wiki/Extension:StructuredDiscussions) | B | REL1_35 `e3379f0` | 2022-04-27
 [Graph](https://www.mediawiki.org/wiki/Extension:Graph) | B | N/A | N/A
+[Interwiki](https://www.mediawiki.org/wiki/Extension:Interwiki) | B | REL1_35 `a65a18e` | 2022-05-15
 [Lingo](https://www.mediawiki.org/wiki/Extension:Lingo) | B | REL1_35 `e948775` | 2022-04-29
 [MsUpload](https://www.mediawiki.org/wiki/Extension:MsUpload) | A | REL1_35 `32eb420` | 2021-08-25
 [MultimediaViewer](https://www.mediawiki.org/wiki/Extension:MultimediaViewer) | A | N/A | N/A
@@ -60,9 +61,10 @@ Name | Grade | Version | Last updated
 [TabberNeue](https://www.mediawiki.org/wiki/Extension:TabberNeue) | A | 1.3.1 `c045490` | 2022-04-19
 [TimedMediaHandler](https://www.mediawiki.org/wiki/Extension:TimedMediaHandler) | B | N/A | N/A
 [Translate](https://www.mediawiki.org/wiki/Extension:Translate) | B | MLEB 2021.07 | 2021-07-29
-[UniversalLanguageSelector](https://www.mediawiki.org/wiki/Extension:UniversalLanguageSelector) | B | MLEB 2021.07 | 2021-07-29
+[UniversalLanguageSelector](https://www.mediawiki.org/wiki/Extension:UniversalLanguageSelector) | B | MLEB 2021.12 | 2022-05-17
 [UploadWizard](https://www.mediawiki.org/wiki/Extension:UploadWizard) | A | N/A | N/A
 [VisualEditor](https://www.mediawiki.org/wiki/Extension:VisualEditor) | A | REL1_35 `cc3466a` | 2021-08-04
+[Wikibase](https://www.mediawiki.org/wiki/Extension:Wikibase) | B | REL1_35 `7bb503b` | 2022-05-11
 [WikiEditor](https://www.mediawiki.org/wiki/Extension:WikiEditor) | B | REL1_35 `e18315e` | 2021-08-11
 [WSSearchFront](https://www.mediawiki.org/wiki/Extension:WSSearchFront) | B | 3.5.4 `c27ebcb5` | 2021-11-23
 
@@ -88,9 +90,8 @@ Name | Description | Values | Default
 `$wgCitizenThemeDefault` | The default theme of the skin | `auto` - switch between light and dark according to OS/browser settings; `light`; `dark` | `auto`
 `$wgCitizenEnableCollapsibleSections` | Enables or disable collapsible sections on content pages | `true` - enable; `false` - disable | `true`
 `$wgCitizenShowPageTools` | The condition of page tools visibility | `true` - always visible; `login` - visible to logged-in users; `permission` - visible to users with the right permissions | `true`
+`$wgCitizenSiteToolsPortlet` | ID of the portlet to attach the site tools | string |
 `$wgCitizenEnableDrawerSiteStats` | Enables the site statistics in drawer menu | `true` - enable; `false` - disable | `true`
-`$wgCitizenEnableDrawerSubSearch` | Enables the drawer search box for menu entries | `true` - enable; `false` - disable | `false`
-`$wgCitizenPortalAttach` | Label of the portal to attach links to upload and special pages to | string | `first`
 `$wgCitizenThemeColor` | The color defined in the `theme-color` meta tag | Hex color code | `#131a21`
 
 ### Search suggestions

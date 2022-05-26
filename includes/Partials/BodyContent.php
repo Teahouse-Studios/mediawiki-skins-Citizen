@@ -31,7 +31,6 @@ use DOMXpath;
 use Html;
 use HtmlFormatter\HtmlFormatter;
 use MediaWiki\MediaWikiServices;
-use OutputPage;
 use Wikimedia\Services\NoSuchServiceException;
 
 final class BodyContent extends Partial {
@@ -75,13 +74,15 @@ final class BodyContent extends Partial {
 	/**
 	 * Rebuild the body content
 	 *
-	 * @param OutputPage $out OutputPage
 	 * @return string html
 	 */
-	public function buildBodyContent( $out ) {
-		$printSource = Html::rawElement( 'div', [ 'class' => 'printfooter' ], $this->skin->printSource() );
+	public function buildBodyContent() {
+		$skin = $this->skin;
+		$out = $this->out;
+		$title = $this->title;
+
+		$printSource = Html::rawElement( 'div', [ 'class' => 'printfooter' ], $skin->printSource() );
 		$htmlBodyContent = $out->getHTML() . "\n" . $printSource;
-		$title = $out->getTitle();
 
 		// Return the page if title is null
 		if ( $title === null ) {

@@ -13,12 +13,18 @@
 }
 
 // Collaspe animation setup
-.citizen-card-hide( @position, @axis: '' ) {
+.citizen-card-hide( @position, @axis: '', @fadeChildren: true ) {
 	opacity: 0;
 	pointer-events: none;
 	transform: ~'scale@{axis}( 0 )';
 	transform-origin: @position;
 	visibility: hidden;
+
+	& when ( @fadeChildren ) {
+		> * {
+			opacity: 0;
+		}
+	}
 }
 
 // Expand animiation setup
@@ -109,8 +115,11 @@
 
 .menu-item-link() {
 	display: flex;
+	align-items: center;
+	justify-content: space-between;
 	color: var( --color-base ) !important;
 	font-weight: 450;
+	gap: 0.5rem;
 }
 
 .menu-item-link-hover() {
