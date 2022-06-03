@@ -49,6 +49,7 @@
 
 	&__card {
 		position: absolute;
+		z-index: @z-index-page-header; // So the popups inside will be higher than content
 		right: 0;
 		overflow: auto;
 		min-width: 200px;
@@ -227,7 +228,7 @@
 
 #p-views {
 	// VE styles shouldn't be core but it is just a few lines :/
-	#ca-ve-edit {
+	#ca-ve-edit:not( .selected ) {
 		order: 98; // Before source edit
 
 		> a {

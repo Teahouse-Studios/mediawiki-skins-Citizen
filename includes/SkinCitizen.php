@@ -21,17 +21,22 @@
  * @ingroup Skins
  */
 
-use Citizen\GetConfigTrait;
-use Citizen\Partials\BodyContent;
-use Citizen\Partials\Drawer;
-use Citizen\Partials\Footer;
-use Citizen\Partials\Header;
-use Citizen\Partials\Logos;
-use Citizen\Partials\Metadata;
-use Citizen\Partials\PageTools;
-use Citizen\Partials\Tagline;
-use Citizen\Partials\Theme;
-use Citizen\Partials\Title;
+namespace MediaWiki\Skins\Citizen;
+
+use Html;
+use Linker;
+use MediaWiki\Skins\Citizen\Partials\BodyContent;
+use MediaWiki\Skins\Citizen\Partials\Drawer;
+use MediaWiki\Skins\Citizen\Partials\Footer;
+use MediaWiki\Skins\Citizen\Partials\Header;
+use MediaWiki\Skins\Citizen\Partials\Logos;
+use MediaWiki\Skins\Citizen\Partials\Metadata;
+use MediaWiki\Skins\Citizen\Partials\PageTools;
+use MediaWiki\Skins\Citizen\Partials\Tagline;
+use MediaWiki\Skins\Citizen\Partials\Theme;
+use MediaWiki\Skins\Citizen\Partials\Title;
+use Sanitizer;
+use SkinMustache;
 
 /**
  * Skin subclass for Citizen
@@ -53,7 +58,9 @@ class SkinCitizen extends SkinMustache {
 	public function __construct( $options = [] ) {
 		// Add skin-specific features
 		$this->buildSkinFeatures( $options );
-
+		// Can't use templateDirectory inside skin.json
+		// Relative path does not work well with 1.35
+		// TODO: Replace with templateDirectory when 1.39
 		$options['templateDirectory'] = dirname( __DIR__, 1 ) . '/templates';
 		parent::__construct( $options );
 	}
@@ -63,6 +70,7 @@ class SkinCitizen extends SkinMustache {
 	 * @throws MWException
 	 */
 	public function getTemplateData(): array {
+		$data = [];
 		$out = $this->getOutput();
 		$title = $out->getTitle();
 		$parentData = parent::getTemplateData();
@@ -94,36 +102,40 @@ class SkinCitizen extends SkinMustache {
 		// Conditionally used values must use null to indicate absence (not false or '').
 		$newTalksHtml = $this->getNewtalks() ?: null;
 
-		return $parentData + [
-			'toc-enabled' => $out->isTOCEnabled(),
-			'msg-sitetitle' => $this->msg( 'sitetitle' )->text(),
-			'html-mainpage-attributes' => Xml::expandAttributes(
-				Linker::tooltipAndAccesskeyAttribs( 'p-logo' ) + [
-					'href' => Skin::makeMainPageUrl(),
-				]
-			),
-			'data-logos' => $logos->getLogoData(),
+		// Polyfill for 1.35
+		if ( version_compare( MW_VERSION, '1.36', '<' ) ) {
+			$data += [
+				'data-logos' => $logos->getLogoData(),
+				'html-user-message' => $newTalksHtml ?
+					Html::rawElement( 'div', [ 'class' => 'usermessage' ], $newTalksHtml ) : null,
+				'link-mainpage' => $title->newMainPage()->getLocalUrl(),
+			];
 
+			foreach ( $this->options['messages'] ?? [] as $message ) {
+				$data["msg-{$message}"] = $this->msg( $message )->text();
+			}
+		}
+
+		$data += [
+			// Booleans
+			'toc-enabled' => $out->isTOCEnabled(),
+			// Data objects
 			'data-header' => [
 				'data-drawer' => $drawer->getDrawerTemplateData(),
 				'data-notifications' => $header->getNotifications(),
 				'data-personal-menu' => $header->buildPersonalMenu(),
 				'data-search-box' => $header->buildSearchProps(),
-				'msg-citizen-jumptotop' => $this->msg( 'citizen-jumptotop' )->text() . ' [home]',
+				'html-citizen-jumptotop' => $this->msg( 'citizen-jumptotop' )->text() . ' [home]',
 			],
-
-			'html-title-heading--formatted' => $pageTitle->buildTitle( $parentData, $title ),
-
 			'data-pagetools' => $tools->buildPageTools( $parentData ),
-
-			'html-newtalk' => $newTalksHtml ? '<div class="usermessage">' . $newTalksHtml . '</div>' : '',
-
-			'msg-tagline' => $tagline->getTagline(),
-
-			'html-body-content--formatted' => $bodycontent->buildBodyContent(),
-
 			'data-citizen-footer' => $footer->getFooterData(),
+			// HTML strings
+			'html-title-heading--formatted' => $pageTitle->buildTitle( $parentData, $title ),
+			'html-body-content--formatted' => $bodycontent->buildBodyContent(),
+			'html-tagline' => $tagline->getTagline(),
 		];
+
+		return array_merge( $parentData, $data );
 	}
 
 	/**

@@ -23,7 +23,7 @@
 
 declare( strict_types=1 );
 
-namespace Citizen\Partials;
+namespace MediaWiki\Skins\Citizen\Partials;
 
 use MediaWiki\MediaWikiServices;
 use MWException;
@@ -67,7 +67,6 @@ final class Header extends Partial {
 		}
 
 		return [
-			'msg-citizen-personalmenu-toggle' => $skin->msg( 'citizen-personalmenu-toggle' )->text(),
 			'data-personal-menu-header' => $header,
 			'data-personal-menu-list' => $skin->getPortletData( 'personal', $personalTools ),
 		];
@@ -111,14 +110,13 @@ final class Header extends Partial {
 		$toggleMsg = $skin->msg( 'citizen-search-toggle' )->text();
 
 		return [
+			// TODO: This should be called in skin.json
 			'msg-citizen-search-toggle' => $toggleMsg,
 			'msg-citizen-search-toggle-shortcut' => $toggleMsg . ' [/]',
 			'form-action' => $this->getConfigValue( 'Script' ),
 			'html-input' => $skin->makeSearchInput( [ 'id' => 'searchInput' ] ),
-			'msg-search' => $skin->msg( 'search' ),
 			'page-title' => SpecialPage::getTitleFor( 'Search' )->getPrefixedDBkey(),
 			'html-random-href' => Skin::makeSpecialUrl( 'Randompage' ),
-			'msg-random' => $skin->msg( 'Randompage' )->text(),
 		];
 	}
 
@@ -132,12 +130,15 @@ final class Header extends Partial {
 	private function getPersonalHeaderData( $personalTools ): array {
 		$skin = $this->skin;
 		$user = $this->user;
+		$header = [];
 
-		$header = [
-			'userpage' => $personalTools['userpage'] ?? null,
-			'usergroups' => $this->getUserGroupsData( $personalTools, $user ),
-			'usercontris' => $this->getUserContributionsData( $user ),
-		];
+		if ( $user->isRegistered() ) {
+			$header += [
+				'userpage' => $personalTools['userpage'] ?? null,
+				'usergroups' => $this->getUserGroupsData( $personalTools, $user ),
+				'usercontris' => $this->getUserContributionsData( $user ),
+			];
+		}
 
 		return $skin->getPortletData( 'personal-header', array_filter( $header ) );
 	}

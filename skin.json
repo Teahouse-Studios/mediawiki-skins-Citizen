@@ -1,6 +1,6 @@
 {
 	"name": "Citizen",
-	"version": "1.17.3",
+	"version": "1.17.5",
 	"author": [
 		"[https://www.mediawiki.org/wiki/User:Alistair3149 Alistair3149]",
 		"[https://www.mediawiki.org/wiki/User:Octfx Octfx]",
@@ -16,11 +16,11 @@
 	},
 	"ValidSkinNames": {
 		"citizen": {
-			"class": "SkinCitizen",
-			"@args": "See SkinCitizen::__construct for more detail.",
+			"class": "MediaWiki\\Skins\\Citizen\\SkinCitizen",
 			"args": [
 				{
 					"name": "citizen",
+					"responsive": true,
 					"scripts": [
 						"skins.citizen.scripts"
 					],
@@ -40,10 +40,11 @@
 					"messages": [
 						"citizen-actions-more-toggle",
 						"citizen-drawer-toggle",
-						"citizen-jumptotop",
 						"citizen-languages-toggle",
 						"citizen-personalmenu-toggle",
-						"citizen-search-toggle"
+						"randompage",
+						"search",
+						"sitetitle"
 					]
 				}
 			]
@@ -54,23 +55,17 @@
 			"i18n"
 		]
 	},
-	"AutoloadClasses": {
-		"SkinCitizen": "includes/SkinCitizen.php"
-	},
 	"AutoloadNamespaces": {
-		"Citizen\\": "includes/"
-	},
-	"ConfigRegistry": {
-		"Citizen": "GlobalVarConfig::newInstance"
+		"MediaWiki\\Skins\\Citizen\\": "includes/"
 	},
 	"APIModules": {
 		"webapp-manifest": {
-			"class": "Citizen\\Api\\ApiWebappManifest"
+			"class": "MediaWiki\\Skins\\Citizen\\Api\\ApiWebappManifest"
 		}
 	},
 	"HookHandlers": {
 		"SkinHooks": {
-			"class": "Citizen\\Hooks\\SkinHooks"
+			"class": "MediaWiki\\Skins\\Citizen\\Hooks\\SkinHooks"
 		}
 	},
 	"Hooks": {
@@ -185,7 +180,7 @@
 				"resources/skins.citizen.scripts/skin.js",
 				{
 					"name": "resources/skins.citizen.scripts/config.json",
-					"callback": "Citizen\\Hooks\\ResourceLoaderHooks::getCitizenResourceLoaderConfig"
+					"callback": "MediaWiki\\Skins\\Citizen\\Hooks\\ResourceLoaderHooks::getCitizenResourceLoaderConfig"
 				},
 				"resources/skins.citizen.scripts/checkboxHack.js",
 				"resources/skins.citizen.scripts/scrollObserver.js",
@@ -222,7 +217,7 @@
 				"resources/skins.citizen.search/main.js",
 				{
 					"name": "resources/skins.citizen.search/config.json",
-					"callback": "Citizen\\Hooks\\ResourceLoaderHooks::getCitizenSearchResourceLoaderConfig"
+					"callback": "MediaWiki\\Skins\\Citizen\\Hooks\\ResourceLoaderHooks::getCitizenSearchResourceLoaderConfig"
 				},
 				"resources/skins.citizen.search/typeahead.js",
 				"resources/skins.citizen.search/gateway/gateway.js",
@@ -528,6 +523,8 @@
 			"+ext.MsUpload": "skinStyles/extensions/MsUpload/ext.MsUpload.less",
 			"+ext.relatedArticles.cards": "skinStyles/extensions/RelatedArticles/ext.relatedArticles.cards.less",
 			"+ext.relatedArticles.readMore": "skinStyles/extensions/RelatedArticles/ext.relatedArticles.readMore.less",
+			"+ext.RevisionSlider.lazyCss": "skinStyles/extensions/RevisionSlider/ext.RevisionSlider.lazyCss.less",
+			"+ext.RevisionSlider.init": "skinStyles/extensions/RevisionSlider/ext.RevisionSlider.init.less",
 			"+ext.libs.tippy": "skinStyles/extensions/SemanticMediaWiki/ext.libs.tippy.less",
 			"+ext.smw.ask.styles": "skinStyles/extensions/SemanticMediaWiki/ext.smw.ask.styles.less",
 			"+ext.smw.browse.styles": "skinStyles/extensions/SemanticMediaWiki/ext.smw.browse.styles.less",
@@ -607,6 +604,7 @@
 			"+ext.uls.interface": "skinStyles/extensions/UniversalLanguageSelector/ext.uls.interface.less",
 			"+ext.uls.interlanguage": "skinStyles/extensions/UniversalLanguageSelector/ext.uls.interlanguage.less",
 			"+ext.uls.languagesettings": "skinStyles/extensions/UniversalLanguageSelector/ext.uls.languagesettings.less",
+			"+ext.uls.pt": "skinStyles/extensions/UniversalLanguageSelector/ext.uls.pt.less",
 			"+ext.uls.setlang": "skinStyles/extensions/UniversalLanguageSelector/ext.uls.setlang.less",
 			"+jquery.ime": "skinStyles/extensions/UniversalLanguageSelector/jquery.ime.less",
 			"+jquery.uls": "skinStyles/extensions/UniversalLanguageSelector/jquery.uls.less",
