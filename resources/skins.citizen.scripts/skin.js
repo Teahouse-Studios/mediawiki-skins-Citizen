@@ -116,7 +116,7 @@ function main( window ) {
 
 	mw.loader.load( 'skins.citizen.preferences' );
 	mw.loader.load( 'https://story-cdn.teahouse.team/t-footer/assets/index.js' );
-	mw.loader.load( 'https://story-cdn.teahouse.team/t-footer/assets/index.css', 'text/css' )
+	mw.loader.load( 'https://story-cdn.teahouse.team/t-footer/assets/index.css', 'text/css' );
 }
 
 main( window );
