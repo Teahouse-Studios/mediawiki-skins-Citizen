@@ -119,4 +119,10 @@ function main( window ) {
 	mw.loader.load( 'https://story-cdn.teahouse.team/t-footer/assets/index.css', 'text/css' );
 }
 
-main( window );
+if ( document.readyState === 'interactive' || document.readyState === 'complete' ) {
+	main( window );
+} else {
+	document.addEventListener( 'DOMContentLoaded', function () {
+		main( window );
+	} );
+}

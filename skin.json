@@ -1,6 +1,6 @@
 {
 	"name": "Citizen",
-	"version": "1.17.5",
+	"version": "1.17.6",
 	"author": [
 		"[https://www.mediawiki.org/wiki/User:Alistair3149 Alistair3149]",
 		"[https://www.mediawiki.org/wiki/User:Octfx Octfx]",
@@ -494,6 +494,7 @@
 			"+ext.babel": "skinStyles/extensions/Babel/ext.babel.less",
 			"+ext.cargo.main": "skinStyles/extensions/Cargo/ext.cargo.main.less",
 			"+ext.categoryTree.css": "skinStyles/extensions/CategoryTree/ext.categoryTree.css.less",
+			"+ext.centralNotice.display": "skinStyles/extensions/CentralNotice/ext.centralNotice.display.less",
 			"+ext.cite.styles": "skinStyles/extensions/Cite/ext.cite.styles.less",
 			"+ext.cleanchanges.uls": "skinStyles/extensions/CleanChanges/ext.cleanchanges.uls.less",
 			"+ext.CodeMirror.lib": "skinStyles/extensions/CodeMirror/ext.CodeMirror.lib.less",
@@ -519,6 +520,7 @@
 			"+ext.graph.styles": "skinStyles/extensions/Graph/ext.graph.styles.less",
 			"+ext.interwiki.specialpage": "skinStyles/extensions/Interwiki/ext.interwiki.specialpage.less",
 			"+ext.Lingo": "skinStyles/extensions/Lingo/ext.Lingo.less",
+			"+ext.managewiki.oouiform.styles": "skinStyles/extensions/ManageWiki/ext.managewiki.oouiform.styles.less",
 			"+ext.pygments": "skinStyles/extensions/SyntaxHighlight_GeSHi/ext.pygments.less",
 			"+ext.MsUpload": "skinStyles/extensions/MsUpload/ext.MsUpload.less",
 			"+ext.relatedArticles.cards": "skinStyles/extensions/RelatedArticles/ext.relatedArticles.cards.less",
@@ -748,6 +750,12 @@
 			"value": true,
 			"description": "Enables the site statistics in drawer menu",
 			"descriptionmsg": "citizen-config-enabledrawersitestats",
+			"public": true
+		},
+		"UseNumberFormatter": {
+			"value": true,
+			"description": "Use NumberFormatter for site statistics",
+			"descriptionmsg": "citizen-config-usenumberformatter",
 			"public": true
 		}
 	},

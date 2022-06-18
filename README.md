@@ -36,6 +36,7 @@ Name | Grade | Version | Last updated
 [Capiunto](https://www.mediawiki.org/wiki/Extension:Capiunto) | B | REL1_35 `30049a7` | 2021-08-26
 [Cargo](https://www.mediawiki.org/wiki/Extension:Cargo) | B | REL1_35 `df13273` | 2021-08-31
 [CategoryTree](https://www.mediawiki.org/wiki/Extension:CategoryTree) | B | N/A | N/A
+[CentralNotice](https://www.mediawiki.org/wiki/Extension:CentralNotice) | B | REL1_35 `4aa2a8f` | 2022-06-16
 [Cite](https://www.mediawiki.org/wiki/Extension:Cite) | A | N/A | N/A
 [CleanChanges](https://www.mediawiki.org/wiki/Extension:CleanChanges) | B | MLEB 2021.07 | 2021-07-29
 [CodeMirror](https://www.mediawiki.org/wiki/Extension:CodeMirror) | A | REL1_35 `a326407` | 2021-08-25
@@ -47,6 +48,7 @@ Name | Grade | Version | Last updated
 [Graph](https://www.mediawiki.org/wiki/Extension:Graph) | B | N/A | N/A
 [Interwiki](https://www.mediawiki.org/wiki/Extension:Interwiki) | B | REL1_35 `a65a18e` | 2022-05-15
 [Lingo](https://www.mediawiki.org/wiki/Extension:Lingo) | B | REL1_35 `e948775` | 2022-04-29
+[ManageWiki](https://www.mediawiki.org/wiki/Extension:ManageWiki) | B | master `60a2f51` | 2022-06-16
 [MsUpload](https://www.mediawiki.org/wiki/Extension:MsUpload) | A | REL1_35 `32eb420` | 2021-08-25
 [MultimediaViewer](https://www.mediawiki.org/wiki/Extension:MultimediaViewer) | A | N/A | N/A
 [OAuth](https://www.mediawiki.org/wiki/Extension:OAuth) | B | REL1_35 `451ed95` | 2021-08-31
@@ -93,6 +95,7 @@ Name | Description | Values | Default
 `$wgCitizenShowPageTools` | The condition of page tools visibility | `true` - always visible; `login` - visible to logged-in users; `permission` - visible to users with the right permissions | `true`
 `$wgCitizenSiteToolsPortlet` | ID of the portlet to attach the site tools | string |
 `$wgCitizenEnableDrawerSiteStats` | Enables the site statistics in drawer menu | `true` - enable; `false` - disable | `true`
+`$wgCitizenUseNumberFormatter` | Use NumberFormatter for site statistics, which allows formatting number in a localized way | `true` - enable; `false` - disable | `true`
 `$wgCitizenThemeColor` | The color defined in the `theme-color` meta tag | Hex color code | `#131a21`
 
 ### Search suggestions
