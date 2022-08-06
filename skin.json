@@ -1,6 +1,6 @@
 {
 	"name": "Citizen",
-	"version": "1.17.6",
+	"version": "1.17.8",
 	"author": [
 		"[https://www.mediawiki.org/wiki/User:Alistair3149 Alistair3149]",
 		"[https://www.mediawiki.org/wiki/User:Octfx Octfx]",
@@ -242,7 +242,11 @@
 				"resources/skins.citizen.preferences/skins.citizen.preferences.less"
 			],
 			"packageFiles": [
-				"resources/skins.citizen.preferences/skins.citizen.preferences.js"
+				"resources/skins.citizen.preferences/skins.citizen.preferences.js",
+				{
+					"name": "resources/skins.citizen.preferences/config.json",
+					"callback": "MediaWiki\\Skins\\Citizen\\Hooks\\ResourceLoaderHooks::getCitizenPreferencesResourceLoaderConfig"
+				}
 			],
 			"messages": [
 				"preferences",
