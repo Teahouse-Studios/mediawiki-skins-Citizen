@@ -23,10 +23,10 @@
 				width: 0.625rem;
 				height: 0.625rem;
 				border: 0.125rem solid #000;
+				border-radius: 100%;
 				margin-top: -0.3125rem;
 				/* @noflip */
 				margin-left: -0.125rem;
-				border-radius: 100%;
 				transform: rotate( -45deg );
 			}
 
@@ -76,6 +76,8 @@
 #citizen-search__checkbox:checked {
 	// Transform the magnifying glass button into a crossmark
 	~ .citizen-search__button {
+		background-color: var( --background-color-primary--active );
+
 		> .citizen-search__buttonIcon {
 			> div {
 				&:first-child {
@@ -95,7 +97,7 @@
 
 		&:hover {
 			> .citizen-search__buttonIcon {
-				transform: scale( 0.8 );
+				transform: scale( 0.85 );
 			}
 		}
 	}

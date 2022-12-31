@@ -25,14 +25,9 @@
 			justify-content: space-between;
 		}
 
-		&__title {
-			color: var( --color-base--subtle );
-			letter-spacing: 0.75px;
-		}
-
 		&__value {
 			color: var( --color-base--emphasized );
-			font-weight: 500;
+			font-weight: var( --font-weight-medium );
 		}
 	}
 
@@ -43,7 +38,7 @@
 			border: 2px solid var( --border-color-base );
 			border-radius: var( --border-radius--medium );
 			cursor: pointer;
-			font-weight: 500;
+			font-weight: var( --font-weight-medium );
 			text-align: center;
 			white-space: nowrap;
 
@@ -72,17 +67,12 @@
 		padding: 1.25rem 1.25rem 0;
 		color: var( --color-base--emphasized );
 		font-size: 1rem;
-		font-weight: 600;
+		font-weight: var( --font-weight-semibold );
 	}
 
 	// TODO: unify the dropdown menu style somewhere
 	&-panel {
-		position: absolute;
-		top: var( --height-header );
-		right: 1.25rem;
-		left: 1.25rem;
-		.citizen-card;
-		.citizen-card-hide( top right );
+		.citizen-header-card( right );
 		.citizen-card-transition();
 
 		&.citizen-pref-panel--active {
@@ -116,8 +106,8 @@
 			}
 
 			&-dark {
-				background: @color-surface-0-dark;
-				color: @dark-color-base;
+				background: ~'hsl( var( --color-primary__h ) 20% 10% )';
+				color: ~'hsl( var( --color-primary__h ) 10% 75% )';
 			}
 		}
 
@@ -145,14 +135,14 @@
 		width: 100%;
 		padding: 0.625rem 1.25rem;
 		border: 0;
+		border-radius: 0 0 var( --border-radius--medium ) var( --border-radius--medium );
 		appearance: none;
 		background: var( --color-destructive );
-		border-radius: 0 0 var( --border-radius--medium ) var( --border-radius--medium );
 		color: #fff;
 		cursor: pointer;
 		font-family: inherit;
 		font-size: 0.875rem;
-		font-weight: 500;
+		font-weight: var( --font-weight-medium );
 
 		&:hover {
 			background: var( --color-destructive--hover );
@@ -164,20 +154,8 @@
 	}
 }
 
-@media ( min-width: @width-breakpoint-tablet ) {
-	#citizen-pref {
-		position: relative;
-
-		&-panel {
-			right: 0;
-			left: unset;
-			min-width: 20rem;
-		}
-	}
-}
-
 @media ( hover: hover ) {
-	.citizen-pref:hover .citizen-pref__button:after {
+	.citizen-pref:hover .citizen-pref__button .citizen-ui-icon:before {
 		transform: rotate3d( 0, 0, 1, 90deg );
 	}
 }

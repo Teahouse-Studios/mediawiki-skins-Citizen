@@ -10,8 +10,6 @@
 
 .mw-echo-ui-notificationBadgeButtonPopupWidget {
 	&-popup {
-		margin-top: 8px; // align with other menus
-		box-shadow: var( --box-shadow-dialog );
 		filter: none; // disable filter drop shadow
 
 		> .oo-ui-popupWidget-popup {
@@ -31,8 +29,8 @@
 				}
 
 				&-body {
-					// Do not overscoll outside
-					overscroll-behavior: contain;
+					max-width: 100% !important; // do not overflow the screen
+					overscroll-behavior: contain; // do not overscoll outside
 				}
 
 				&-footer {

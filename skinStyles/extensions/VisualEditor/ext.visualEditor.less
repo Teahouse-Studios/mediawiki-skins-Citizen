@@ -10,27 +10,21 @@
 */
 
 .ve-activated {
-	.mw-header {
-		z-index: 3; // Move lower to accompany VE
-		background-color: var( --color-surface-0 );
-
-		&:before {
-			box-shadow: none;
-		}
-	}
-
 	#page-tools {
 		z-index: 1; // Fix collision
 		opacity: 1;
 		pointer-events: auto;
 	}
 
-	#content {
-		overflow: visible;
+	// Hide edit buttons since it is handled by the editing mode dropdown in the toolbar
+	#ca-ve-edit,
+	#ca-edit {
+		display: none;
 	}
 
-	// Reset VE disabled style to allow page action buttons to work
 	.mw-body-header {
+		z-index: 0; // Reset z-index so toolbar won't clip
+		// Reset VE disabled style to allow page action buttons to work
 		opacity: 1;
 		pointer-events: auto;
 		user-select: auto;
@@ -40,128 +34,181 @@
 		opacity: 0.5;
 	}
 
-	// Since ToC does not appear in VE
-	.mw-body-header,
-	.citizen-body {
-		margin-right: auto !important;
-		margin-left: auto !important;
-	}
-
-	.mw-footer {
-		z-index: 2; // Fix collision with VE elements
+	.citizen-toc {
+		display: none; // Hide ToC
 	}
 }
 
+// Extra selector because I am lazy to break it down to proper RL stylesheets
+// TODO: Break down into RL stylesheets when my sins catch up to me
 .skin-citizen {
-	.ve-ui {
-		&-toolbar {
-			> .oo-ui-toolbar-bar {
-				border-color: var( --border-color-base--darker );
-				background-color: var( --color-surface-0 );
+	.ve {
+		&-ce {
+			&-branchNode {
+				&-blockSlug,
+				&-newSlug {
+					background-color: transparent;
+					outline-color: var( --border-color-base );
+				}
+			}
 
-				.oo-ui-toolbar-bar {
-					border: 0;
+			&-linkAnnotation {
+				&.ve-ce-annotation-active {
+					background-color: var( --background-color-primary--active );
+					box-shadow: 0 0 0 1px var( --border-color-base );
+				}
+			}
+		}
+
+		&-ui {
+			&-toolbar {
+				> .oo-ui-toolbar-bar {
+					border-color: var( --border-color-base--darker );
+					background-color: var( --color-surface-0 );
+
+					.oo-ui-toolbar-bar {
+						border: 0;
+						background-color: transparent;
+					}
+
+					> .oo-ui-toolbar-tools {
+						flex-basis: 50%;
+						flex-grow: 1;
+						overflow-x: auto;
+						overflow-y: hidden;
+					}
+
+					> .oo-ui-toolbar-actions {
+						order: 5; // Second order
+						border-left: 1px solid var( --border-color-base );
+					}
+
+					> .oo-ui-windowManager {
+						order: 10; // Third order
+					}
+
+					.oo-ui-toolbar-tools {
+						display: inline-block;
+						white-space: nowrap;
+					}
+
+					/* Fix inline height */
+					.oo-ui-popupToolGroup-tools.oo-ui-popupToolGroup-active-tools {
+						overflow: auto !important;
+						height: auto !important;
+					}
+				}
+			}
+
+			&-surface {
+				&-visual {
+					.ve-ce-documentNode {
+						font-size: 1rem; // So that same font size as the actual page
+					}
+				}
+			}
+
+			&-targetWidget {
+				border-color: var( --border-color-input );
+
+				&:not( .oo-ui-pendingElement-pending ) {
+					background: var( --color-surface-1 );
+				}
+			}
+
+			&-overlay {
+				font-family: var( --font-family-base );
+
+				&-global {
+					z-index: 100;
+				}
+			}
+
+			&-desktopContext {
+				.ve-ui-linkContextItem .ve-ui-linkContextItem-label {
+					border-color: var( --border-color-base );
+				}
+			}
+
+			&-expandableContent {
+				&-fade {
+					background: linear-gradient( to right, rgba( 255, 255, 255, 0 ) 0, var( --color-surface-1 ) 90% );
+				}
+
+				&-toggle {
+					background-color: transparent;
+				}
+			}
+
+			&-mwSaveDialog {
+				&-summary {
 					background-color: transparent;
 				}
 
-				> .oo-ui-toolbar-tools {
-					flex-basis: 50%;
-					flex-grow: 1;
-					overflow-x: auto;
-					overflow-y: hidden;
+				&-options {
+					border-color: var( --border-color-base );
+					background-color: var( --color-surface-2 );
 				}
 
-				> .oo-ui-toolbar-actions {
-					order: 5; // Second order
-					border-left: 1px solid var( --border-color-base );
+				&--editSummary-count {
+					border-color: var( --border-color-base );
 				}
 
-				> .oo-ui-windowManager {
-					order: 10; // Third order
+				&-license {
+					color: var( --color-base--subtle );
 				}
 
-				.oo-ui-toolbar-tools {
-					display: inline-block;
-					white-space: nowrap;
+				// Preview and review change panels
+				&-savePanel {
+					~ .oo-ui-panelLayout {
+						background-color: var( --color-surface-0 );
+					}
 				}
 
-				/* Fix inline height */
-				.oo-ui-popupToolGroup-tools.oo-ui-popupToolGroup-active-tools {
-					overflow: auto !important;
-					height: auto !important;
+				// Give preview content a max width
+				.mw-parser-output {
+					max-width: var( --width-layout );
+					margin-right: auto;
+					margin-left: auto;
 				}
 			}
-		}
 
-		&-surface {
-			&-visual {
-				.ve-ce-documentNode {
-					font-size: 1rem; // So that same font size as the actual page
+			&-mwTransclusion {
+				&Dialog-addParameterFieldset .ve-ui-mwParameterSearchWidget {
+					border-color: var( --border-color-base );
+				}
+
+				&Outline {
+					&ButtonWidget {
+						&.oo-ui-buttonElement-frameless.oo-ui-widget-enabled > .oo-ui-buttonElement-button:hover {
+							background-color: var( --background-color-quiet--hover );
+							color: var( --color-base--emphasized );
+						}
+
+						&.oo-ui-optionWidget-selected .oo-ui-buttonElement-button {
+							background-color: var( --background-color-primary--active );
+						}
+					}
+
+					&TemplateWidget-sticky {
+						background-color: var( --color-surface-1 );
+					}
 				}
 			}
-		}
 
-		&-targetWidget {
-			border-color: var( --border-color-input );
-		}
+			&--mwParameterResultWidget {
+				&.oo-ui-optionWidget-highlighted {
+					background-color: var( --background-color-primary--hover );
+				}
 
-		&-overlay {
-			font-family: var( --font-family-base );
-
-			&-global {
-				z-index: 100;
-			}
-		}
-
-		&-mwSaveDialog {
-			&-summary {
-				background-color: transparent;
+				&-description {
+					color: var( --color-base--subtle );
+				}
 			}
 
-			&-options {
-				border-color: var( --border-color-base );
-				background-color: var( --color-surface-2 );
-			}
-
-			&--editSummary-count {
-				border-color: var( --border-color-base );
-			}
-
-			&-license {
+			&-mwTemplatePage-description {
 				color: var( --color-base--subtle );
 			}
-
-			// Preview and review change panels
-			&-savePanel {
-				~ .oo-ui-panelLayout {
-					background-color: var( --color-surface-0 );
-				}
-			}
-
-			// Give preview content a max width
-			.mw-parser-output {
-				max-width: var( --width-layout );
-				margin-right: auto;
-				margin-left: auto;
-			}
-		}
-
-		&-mwTransclusionDialog-addParameterFieldset .ve-ui-mwParameterSearchWidget {
-			border-color: var( --border-color-base );
-		}
-
-		&--mwParameterResultWidget {
-			&.oo-ui-optionWidget-highlighted {
-				background-color: var( --background-color-primary--hover );
-			}
-
-			&-description {
-				color: var( --color-base--subtle );
-			}
-		}
-
-		&-mwTemplatePage-description {
-			color: var( --color-base--subtle );
 		}
 	}
 
@@ -170,26 +217,42 @@
 	}
 }
 
-// Fix weird compressed text bug
-.ve-init-mw-tempWikitextEditorWidget {
-	width: 100% !important;
-	background: transparent;
-}
+.ve-init {
+	&-mw {
+		&-desktopArticleTarget {
+			&-toolbar {
+				&Placeholder {
+					height: 46px; // Correspond to VE toolbar height in Citizen
+					border-bottom: 1px solid var( --border-color-base );
+					margin: 0;
 
-.ve-init-mw-desktopArticleTarget {
-	&-toolbar {
-		margin-right: var( --padding-page--negative );
-		margin-left: var( --padding-page--negative );
+					&-bar {
+						border: 0;
+						box-shadow: none;
+					}
 
-		&.ve-ui-toolbar-floating > .oo-ui-toolbar-bar {
-			top: 56px; // Fixed under header
+					&-floating {
+						.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar {
+							background: var( --color-surface-0 );
+						}
+					}
+				}
+			}
 		}
 
-		&Placeholder {
+		&-progressBarWidget {
+			border-color: var( --color-primary );
+			background-color: var( --color-surface-0 );
+
 			&-bar {
-				border: 0;
-				box-shadow: none;
+				background-color: var( --color-primary );
 			}
+		}
+
+		// Fix weird compressed text bug
+		&-tempWikitextEditorWidget {
+			width: 100% !important;
+			background: transparent;
 		}
 	}
 }
@@ -197,12 +260,6 @@
 // Make toolbar more smaller screen friendly
 // Well at least I did by best
 @media ( max-width: 800px ) {
-	.ve-activated {
-		.mw-header {
-			background-color: transparent; // Because header is taller than toolbar
-		}
-	}
-
 	.ve-ui-toolbar {
 		> .oo-ui-toolbar-bar {
 			display: flex;
@@ -287,6 +344,11 @@
 			}
 		}
 	}
+}
+
+// HACK: Temp fix for mobile toolbar, will revisit when we move to 1.39+
+.ve-ui-toolbar .oo-ui-toolbar-after {
+	display: none !important;
 }
 
 .skin-citizen-dark {

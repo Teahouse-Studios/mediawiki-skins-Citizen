@@ -25,10 +25,11 @@ namespace MediaWiki\Skins\Citizen\Api;
 use ApiBase;
 use ApiFormatJson;
 use MediaWiki\MediaWikiServices;
+use SpecialPage;
 use Title;
 
 /**
- * Extract and modified from MobileFrontend extension
+ * Based on the MobileFrontend extension
  * Return the webapp manifest for this wiki
  */
 class ApiWebappManifest extends ApiBase {
@@ -40,41 +41,99 @@ class ApiWebappManifest extends ApiBase {
 
 		$config = $this->getConfig();
 		$resultObj = $this->getResult();
-		$resultObj->addValue( null, 'name', $config->get( 'Sitename' ) );
-		$resultObj->addValue( null, 'orientation', 'portrait' );
 		$resultObj->addValue( null, 'dir', $services->getContentLanguage()->getDir() );
 		$resultObj->addValue( null, 'lang', $config->get( 'LanguageCode' ) );
+		$resultObj->addValue( null, 'name', $config->get( 'Sitename' ) );
+		// Need to set it manually because the default from start_url does not include script namespace
+		// E.g. index.php URLs will be thrown out of the PWA
+		$resultObj->addValue( null, 'scope', $config->get( 'Server' ) . '/' );
+		$resultObj->addValue( null, 'icons', $this->getIcons( $config, $services ) );
 		$resultObj->addValue( null, 'display', 'standalone' );
+		$resultObj->addValue( null, 'orientation', 'portrait' );
+		$resultObj->addValue( null, 'start_url', Title::newMainPage()->getLocalURL() );
 		$resultObj->addValue( null, 'theme_color', $config->get( 'CitizenManifestThemeColor' ) );
 		$resultObj->addValue( null, 'background_color', $config->get( 'CitizenManifestBackgroundColor' ) );
-		$resultObj->addValue( null, 'start_url', Title::newMainPage()->getLocalURL() );
-
-		$icons = [];
-
-		$appleTouchIcon = $config->get( 'AppleTouchIcon' );
-		if ( $appleTouchIcon !== false ) {
-			$appleTouchIconUrl = wfExpandUrl( $appleTouchIcon, PROTO_CURRENT );
-			$request = $services->getHttpRequestFactory()->create( $appleTouchIconUrl, [], __METHOD__ );
-			$request->execute();
-			$appleTouchIconContent = $request->getContent();
-			if ( !empty( $appleTouchIconContent ) ) {
-				$appleTouchIconSize = getimagesizefromstring( $appleTouchIconContent );
-			}
-			$icon = [
-				'src' => $appleTouchIcon
-			];
-			if ( isset( $appleTouchIconSize ) && $appleTouchIconSize !== false ) {
-				$icon['sizes'] = $appleTouchIconSize[0] . 'x' . $appleTouchIconSize[1];
-				$icon['type'] = $appleTouchIconSize['mime'];
-			}
-			$icons[] = $icon;
-		}
-
-		$resultObj->addValue( null, 'icons', $icons );
+		$resultObj->addValue( null, 'shortcuts', $this->getShortcuts() );
 
 		$main = $this->getMain();
 		$main->setCacheControl( [ 's-maxage' => 86400, 'max-age' => 86400 ] );
 		$main->setCacheMode( 'public' );
+	}
+
+	/**
+	 * Get icons for manifest
+	 *
+	 * @param MediaWikiServices $services
+	 * @param Config $config
+	 * @param MediaWikiServices $services
+	 * @return array
+	 */
+	private function getIcons( $config, $services ) {
+		$icons = [];
+		$logos = $config->get( 'Logos' );
+
+		// That really shouldn't happen
+		if ( $logos !== false ) {
+			$logoKeys = [
+				'1x',
+				'1.5x',
+				'2x',
+				'icon',
+				'svg'
+			];
+
+			foreach ( $logoKeys as $logoKey ) {
+				$logo = (string)$logos[$logoKey];
+
+				if ( !empty( $logo ) ) {
+					$logoUrl = $services->getUrlUtils()->expand( $logo, PROTO_CURRENT );
+					$request = $services->getHttpRequestFactory()->create( $logoUrl, [], __METHOD__ );
+					$request->execute();
+					$logoContent = $request->getContent();
+
+					if ( !empty( $logoContent ) ) {
+						$logoSize = getimagesizefromstring( $logoContent );
+					}
+					$icon = [
+						'src' => $logo
+					];
+
+					if ( isset( $logoSize ) && $logoSize !== false ) {
+						$icon['sizes'] = $logoSize[0] . 'x' . $logoSize[1];
+						$icon['type'] = $logoSize['mime'];
+					}
+
+					// Set sizes to any if it is a SVG
+					if ( substr( $logo, -3 ) === 'svg' ) {
+						$icon['sizes'] = 'any';
+						$icon['type'] = 'image/svg+xml';
+					}
+
+					$icons[] = $icon;
+				}
+			}
+		}
+
+		return $icons;
+	}
+
+	/**
+	 * Get shortcuts for manifest
+	 *
+	 * @return array
+	 */
+	private function getShortcuts() {
+		$shortcuts = [];
+		$specialPages = [ 'Search', 'Randompage', 'RecentChanges' ];
+
+		foreach ( $specialPages as $specialPage ) {
+			$title = SpecialPage::getSafeTitleFor( $specialPage );
+			$shortcut['name'] = $title->getBaseText();
+			$shortcut['url'] = $title->getLocalURL();
+			$shortcuts[] = $shortcut;
+		}
+
+		return $shortcuts;
 	}
 
 	/**

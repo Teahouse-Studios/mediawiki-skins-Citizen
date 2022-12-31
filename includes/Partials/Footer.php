@@ -31,77 +31,18 @@ namespace MediaWiki\Skins\Citizen\Partials;
 final class Footer extends Partial {
 
 	/**
-	 * Get rows that make up the footer
+	 * Decorate footer template data
+	 *
+	 * @param array $footerData original data-footer
 	 * @return array for use in Mustache template describing the footer elements.
 	 */
-	public function getFooterData(): array {
-		$skin = $this->skin;
-
-		$data = [];
-		$footerLinks = $skin->getFooterLinksPublic();
-		$msg = [ 'desc', 'tagline' ];
-
-		// Get last modified message
-		if ( $footerLinks['info']['lastmod'] && isset( $footerLinks['info']['lastmod'] ) ) {
-			$data['html-lastmodified'] = $footerLinks['info']['lastmod'];
-			unset( $footerLinks['info']['lastmod'] );
+	public function decorateFooterData( $footerData ): array {
+		// Add label to footer-info to use in ContentFooter
+		foreach ( $footerData['data-info']['array-items'] as &$item ) {
+			$msgKey = 'citizen-page-info-' . $item['name'];
+			$item['label'] = $this->skin->msg( $msgKey )->text();
 		}
 
-		// Get messages
-		foreach ( $msg as $key ) {
-			$data["msg-citizen-footer-$key"] = $skin->msg( "citizen-footer-$key" )
-				->inContentLanguage()->parse();
-		}
-
-		// Based on SkinMustache
-		// Backported because of 1.35 support
-		foreach ( $footerLinks as $category => $links ) {
-			$items = [];
-			$rowId = "footer-$category";
-
-			foreach ( $links as $key => $link ) {
-				if ( $link ) {
-					$items[] = [
-						'id' => "$rowId-$key",
-						'html' => $link,
-					];
-				}
-			}
-
-			$data['data-citizen-' . $category] = [
-				'id' => $rowId,
-				'className' => null,
-				'array-items' => $items
-			];
-		}
-
-		$footerIcons = $skin->getFooterIconsPublic();
-
-		if ( count( $footerIcons ) > 0 ) {
-			$icons = [];
-			foreach ( $footerIcons as $blockName => $blockIcons ) {
-				$html = '';
-				foreach ( $blockIcons as $key => $icon ) {
-					$html .= $skin->makeFooterIcon( $icon );
-				}
-				if ( $html ) {
-					$block = htmlspecialchars( $blockName );
-					$icons[] = [
-						'id' => 'footer-' . $block . 'ico',
-						'html' => $html,
-					];
-				}
-			}
-
-			if ( count( $icons ) > 0 ) {
-				$data['data-citizen-icons'] = [
-					'id' => 'footer-icons',
-					'className' => 'noprint',
-					'array-items' => $icons,
-				];
-			}
-		}
-
-		return $data;
+		return $footerData;
 	}
 }

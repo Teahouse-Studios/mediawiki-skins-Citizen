@@ -8,15 +8,17 @@
 			"Mim.saitkilic",
 			"Sadrettin",
 			"SaldırganSincap",
-			"Sayginer"
+			"Sayginer",
+			"Toghrul Rahimli"
 		]
 	},
 	"skinname-citizen": "Citizen",
 	"citizen-skin-desc": "Star Citizen Viki için geliştirilmiş duyarlı bir görünüm",
+	"citizen-prefs-talkpage": "[[mw:Skin_talk:Citizen|Tartışma]]",
 	"citizen.css": "/* Buradaki tüm CSS'ler Citizen görünüm  kullanıcıları için yüklenecek */",
 	"citizen.js": "/* Buradaki tüm JavaScript Citizen  görünümü kullanıcıları için yüklenecek */",
 	"citizen-drawer-toggle": "Menüyü değiştir",
-	"citizen-personalmenu-toggle": "Kişisel menüyü aç / kapat",
+	"citizen-usermenu-toggle": "Kişisel menüyü aç / kapat",
 	"citizen-search-toggle": "Aramayı değiştir",
 	"citizen-sitestats-articles-label": "maddeler",
 	"citizen-sitestats-images-label": "dosyalar",
@@ -27,7 +29,7 @@
 	"citizen-action-addsection": "Konu ekle",
 	"citizen-jumptotop": "Başa dön",
 	"citizen-search-fulltext": "İçeren sayfaları ara",
-	"citizen-search-fulltext-empty": "Aramaya başlamak için yazın",
+	"citizen-search-empty-desc": "Aramaya başlamak için yazın",
 	"citizen-tagline-ns-talk": "{{SUBJECTPAGENAME}} tartışma sayfası",
 	"citizen-tagline-ns-project": "{{SITENAME}} hakkında bilgi",
 	"citizen-tagline-ns-file": "{{SITENAME}} sitesindeki dosya",

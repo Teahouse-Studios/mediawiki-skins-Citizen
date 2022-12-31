@@ -5,7 +5,8 @@
 			"Diskdance",
 			"LuciferianThomas",
 			"Tranve",
-			"Winston Sung"
+			"Winston Sung",
+			"捍粵者"
 		]
 	},
 	"skinname-citizen": "公民（Citizen）",
@@ -14,12 +15,12 @@
 	"citizen.css": "/* 此CSS會用於使用Citizen外觀的用戶 */",
 	"citizen.js": "/* 此Javascript會用於使用Citizen外觀的用戶 */",
 	"citizen-drawer-toggle": "切換菜單",
-	"citizen-personalmenu-toggle": "切換個人選單",
+	"citizen-usermenu-toggle": "切換個人選單",
 	"citizen-search-toggle": "切換搜尋",
 	"citizen-languages-toggle": "更多語言",
 	"citizen-actions-more-toggle": "更多操作",
 	"citizen-sitestats-articles-label": "篇條目",
-	"citizen-sitestats-images-label": "個檔案",
+	"citizen-sitestats-images-label": "份檔案",
 	"citizen-sitestats-users-label": "位用家",
 	"citizen-sitestats-edits-label": "次修改",
 	"citizen-footer-desc": "在[[MediaWiki:Citizen-footer-desc]]編輯此文字",
@@ -27,7 +28,7 @@
 	"citizen-action-addsection": "新增話題",
 	"citizen-jumptotop": "返回頂端",
 	"citizen-search-fulltext": "搜尋包含",
-	"citizen-search-fulltext-empty": "輸入開始搜尋",
+	"citizen-search-empty-desc": "輸入開始搜尋",
 	"citizen-tagline-ns-talk": "{{SUBJECTPAGENAME}}的討論頁面",
 	"citizen-tagline-ns-project": "關於{{SITENAME}}的資訊",
 	"citizen-tagline-ns-file": "{{SITENAME}}上的檔案",

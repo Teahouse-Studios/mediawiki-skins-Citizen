@@ -26,7 +26,8 @@ declare( strict_types=1 );
 namespace MediaWiki\Skins\Citizen\Hooks;
 
 use Config;
-use ResourceLoaderContext;
+use ExtensionRegistry;
+use MediaWiki\ResourceLoader as RL;
 
 /**
  * Hooks to run relating to the resource loader
@@ -35,27 +36,27 @@ class ResourceLoaderHooks {
 
 	/**
 	 * Passes config variables to skins.citizen.scripts ResourceLoader module.
-	 * @param ResourceLoaderContext $context
+	 * @param RL\Context $context
 	 * @param Config $config
 	 * @return array
 	 */
 	public static function getCitizenResourceLoaderConfig(
-		ResourceLoaderContext $context,
+		RL\Context $context,
 		Config $config
 	) {
 		return [
-			'wgCitizenEnableSearch' => $config->get( 'CitizenEnableSearch' ),
+			'wgCitizenSearchModule' => $config->get( 'CitizenSearchModule' ),
 		];
 	}
 
 	/**
 	 * Passes config variables to skins.citizen.preferences ResourceLoader module.
-	 * @param ResourceLoaderContext $context
+	 * @param RL\Context $context
 	 * @param Config $config
 	 * @return array
 	 */
 	public static function getCitizenPreferencesResourceLoaderConfig(
-		ResourceLoaderContext $context,
+		RL\Context $context,
 		Config $config
 	) {
 		return [
@@ -65,12 +66,12 @@ class ResourceLoaderHooks {
 
 	/**
 	 * Passes config variables to skins.citizen.search ResourceLoader module.
-	 * @param ResourceLoaderContext $context
+	 * @param RL\Context $context
 	 * @param Config $config
 	 * @return array
 	 */
 	public static function getCitizenSearchResourceLoaderConfig(
-		ResourceLoaderContext $context,
+		RL\Context $context,
 		Config $config
 	) {
 		return [
@@ -79,6 +80,7 @@ class ResourceLoaderHooks {
 			'wgCitizenMaxSearchResults' => $config->get( 'CitizenMaxSearchResults' ),
 			'wgScriptPath' => $config->get( 'ScriptPath' ),
 			'wgSearchSuggestCacheExpiry' => $config->get( 'SearchSuggestCacheExpiry' ),
+			'isMediaSearchExtensionEnabled' => ExtensionRegistry::getInstance()->isLoaded( 'MediaSearch' ),
 		];
 	}
 }
