@@ -23,7 +23,6 @@
 namespace MediaWiki\Skins\Citizen\Api;
 
 use ApiBase;
-use ApiFormatJson;
 use MediaWiki\MediaWikiServices;
 use SpecialPage;
 use Title;
@@ -31,6 +30,9 @@ use Title;
 /**
  * Based on the MobileFrontend extension
  * Return the webapp manifest for this wiki
+ *
+ * T282500
+ * TODO: This should be merged to core
  */
 class ApiWebappManifest extends ApiBase {
 	/**
@@ -56,14 +58,13 @@ class ApiWebappManifest extends ApiBase {
 		$resultObj->addValue( null, 'shortcuts', $this->getShortcuts() );
 
 		$main = $this->getMain();
-		$main->setCacheControl( [ 's-maxage' => 86400, 'max-age' => 86400 ] );
+		$main->setCacheMaxAge( 604800 );
 		$main->setCacheMode( 'public' );
 	}
 
 	/**
 	 * Get icons for manifest
 	 *
-	 * @param MediaWikiServices $services
 	 * @param Config $config
 	 * @param MediaWikiServices $services
 	 * @return array
@@ -83,6 +84,11 @@ class ApiWebappManifest extends ApiBase {
 			];
 
 			foreach ( $logoKeys as $logoKey ) {
+				// Avoid undefined index
+				if ( !isset( $logos[$logoKey] ) ) {
+					continue;
+				}
+
 				$logo = (string)$logos[$logoKey];
 
 				if ( !empty( $logo ) ) {
@@ -127,6 +133,7 @@ class ApiWebappManifest extends ApiBase {
 		$specialPages = [ 'Search', 'Randompage', 'RecentChanges' ];
 
 		foreach ( $specialPages as $specialPage ) {
+			$shortcut = [];
 			$title = SpecialPage::getSafeTitleFor( $specialPage );
 			$shortcut['name'] = $title->getBaseText();
 			$shortcut['url'] = $title->getLocalURL();
@@ -139,9 +146,9 @@ class ApiWebappManifest extends ApiBase {
 	/**
 	 * Get the JSON printer
 	 *
-	 * @return ApiFormatJson
+	 * @return ApiWebappManifestFormatJson
 	 */
 	public function getCustomPrinter() {
-		return new ApiFormatJson( $this->getMain(), 'json' );
+		return new ApiWebappManifestFormatJson( $this->getMain(), 'webmanifest' );
 	}
 }

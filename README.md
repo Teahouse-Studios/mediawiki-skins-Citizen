@@ -46,7 +46,7 @@ Please feel free to submit PRs if you want to add support for more extensions!
 | [ApprovedRevs](https://www.mediawiki.org/wiki/Extension:Approved_Revs)                          | B     | N/A               | N/A          |
 | [Babel](https://www.mediawiki.org/wiki/Extension:Babel)                                         | B     | MLEB 2021.07      | 2021-07-29   |
 | [Capiunto](https://www.mediawiki.org/wiki/Extension:Capiunto)                                   | B     | REL1_35 `30049a7` | 2021-08-26   |
-| [Cargo](https://www.mediawiki.org/wiki/Extension:Cargo)                                         | B     | REL1_35 `df13273` | 2021-08-31   |
+| [Cargo](https://www.mediawiki.org/wiki/Extension:Cargo)                                         | B     | REL1_39 `b4c6314` | 2023-01-03   |
 | [CategoryTree](https://www.mediawiki.org/wiki/Extension:CategoryTree)                           | B     | N/A               | N/A          |
 | [CentralNotice](https://www.mediawiki.org/wiki/Extension:CentralNotice)                         | B     | REL1_35 `4aa2a8f` | 2022-06-16   |
 | [Cite](https://www.mediawiki.org/wiki/Extension:Cite)                                           | A     | N/A               | N/A          |
@@ -70,6 +70,7 @@ Please feel free to submit PRs if you want to add support for more extensions!
 | [Popups](https://www.mediawiki.org/wiki/Extension:Popups)                                       | A     | REL1_39 `a40ebc1` | 2022-11-28   |
 | [PortableInfobox](https://www.mediawiki.org/wiki/Extension:PortableInfobox)                     | B     | 0.6 `16a77dc`     | 2022-04-14   |
 | [RelatedArticles](https://www.mediawiki.org/wiki/Extension:RelatedArticles)                     | A     | REL1_39 `f513e5c` | 2022-11-16   |
+| [ReplaceText](https://www.mediawiki.org/wiki/Extension:ReplaceText)                             | B     | REL1_39 `af4840a` | 2023-01-03   |
 | [RevisionSlider](https://www.mediawiki.org/wiki/Extension:RevisionSlider)                       | B     | REL1_35 `4c4e368` | 2022-06-02   |
 | [Semantic MediaWiki](https://www.mediawiki.org/wiki/Extension:Semantic_MediaWiki)               | A     | 4.0.2 `0fcdfce`   | 2022-10-21   |
 | [Semantic Result Formats](https://www.mediawiki.org/wiki/Extension:Semantic_Result_Formats)     | E     | N/A               | N/A          |
@@ -79,8 +80,9 @@ Please feel free to submit PRs if you want to add support for more extensions!
 | [TabberNeue](https://www.mediawiki.org/wiki/Extension:TabberNeue)                               | A     | 1.3.1 `656f396`   | 2022-10-23   |
 | [TimedMediaHandler](https://www.mediawiki.org/wiki/Extension:TimedMediaHandler)                 | B     | N/A               | N/A          |
 | [Translate](https://www.mediawiki.org/wiki/Extension:Translate)                                 | B     | MLEB 2021.07      | 2021-07-29   |
+| [TwoColConflict](https://www.mediawiki.org/wiki/Extension:TwoColConflict)                       | B     | REL1_39 5a2a947   | 2023-01-09   |
 | [UniversalLanguageSelector](https://www.mediawiki.org/wiki/Extension:UniversalLanguageSelector) | B     | MLEB 2021.12      | 2022-05-17   |
-| [UploadWizard](https://www.mediawiki.org/wiki/Extension:UploadWizard)                           | A     | N/A               | N/A          |
+| [UploadWizard](https://www.mediawiki.org/wiki/Extension:UploadWizard)                           | A     | REL1_39 `9cd7a02` | 2023-01-08   |
 | [VisualEditor](https://www.mediawiki.org/wiki/Extension:VisualEditor)                           | A     | REL1_35 `cc3466a` | 2021-08-04   |
 | [Wikibase](https://www.mediawiki.org/wiki/Extension:Wikibase)                                   | B     | REL1_35 `7bb503b` | 2022-05-11   |
 | [WikiEditor](https://www.mediawiki.org/wiki/Extension:WikiEditor)                               | A     | REL1_39 `02e1c70` | 2022-11-08   |
@@ -135,12 +137,6 @@ Check out [this wiki page](https://github.com/StarCitizenTools/mediawiki-skins-C
 | `$wgCitizenEnableManifest`          | Enable or disable [web app manifest](https://developer.mozilla.org/en-US/docs/Web/Manifest)                        | `true` - enable; `false` - disable | `true`    |
 | `$wgCitizenManifestThemeColor`      | [Theme color](https://developer.mozilla.org/en-US/docs/Web/Manifest/theme_color) of the web app manifest           | Hex color code                     | `#131a21` |
 | `$wgCitizenManifestBackgroundColor` | [Background color](https://developer.mozilla.org/en-US/docs/Web/Manifest/background_color) of the web app manifest | Hex color code                     | `#131a21` |
-
-### Miscellaneous
-
-| Name                   | Description                                     | Values         | Default   |
-| :--------------------- | :---------------------------------------------- | :------------- | :-------- |
-| `$wgCitizenThemeColor` | The color defined in the `theme-color` meta tag | Hex color code | `#11151d` |
 
 ## Requirements
 

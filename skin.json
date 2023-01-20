@@ -1,6 +1,6 @@
 {
 	"name": "Citizen",
-	"version": "2.3.0",
+	"version": "2.3.4",
 	"author": [
 		"[https://www.mediawiki.org/wiki/User:Alistair3149 Alistair3149]",
 		"[https://www.mediawiki.org/wiki/User:Octfx Octfx]",
@@ -159,7 +159,9 @@
 			],
 			"messages": [
 				"citizen-search-fulltext",
+				"citizen-search-fulltext-empty",
 				"citizen-search-mediasearch",
+				"citizen-search-mediasearch-empty",
 				"citizen-search-empty-desc",
 				"citizen-search-noresults-title",
 				"citizen-search-noresults-desc",
@@ -287,6 +289,17 @@
 			"+ext.ApprovedRevs": "skinStyles/extensions/ApprovedRevs/ext.ApprovedRevs.less",
 			"+ext.babel": "skinStyles/extensions/Babel/ext.babel.less",
 			"+ext.cargo.main": "skinStyles/extensions/Cargo/ext.cargo.main.less",
+			"+ext.cargo.pagevalues": "skinStyles/extensions/Cargo/ext.cargo.pagevalues.less",
+			"+ext.cargo.cargotables": "skinStyles/extensions/Cargo/ext.cargo.cargotables.less",
+			"+ext.cargo.calendar": "skinStyles/extensions/Cargo/ext.cargo.calendar.less",
+			"+ext.cargo.gantt": "skinStyles/extensions/Cargo/ext.cargo.gantt.less",
+			"+ext.cargo.zip": "skinStyles/extensions/Cargo/ext.cargo.zip.less",
+			"+ext.cargo.bpmn": "skinStyles/extensions/Cargo/ext.cargo.bpmn.less",
+			"+ext.cargo.timeline": "skinStyles/extensions/Cargo/ext.cargo.timeline.less",
+			"+ext.cargo.datatables": "skinStyles/extensions/Cargo/ext.cargo.datatables.less",
+			"+ext.cargo.slick": "skinStyles/extensions/Cargo/ext.cargo.slick.less",
+			"+ext.cargo.diagram": "skinStyles/extensions/Cargo/ext.cargo.diagram.less",
+			"+ext.cargo.drilldown": "skinStyles/extensions/Cargo/ext.cargo.drilldown.less",
 			"+ext.categoryTree.css": "skinStyles/extensions/CategoryTree/ext.categoryTree.css.less",
 			"+ext.centralNotice.display": "skinStyles/extensions/CentralNotice/ext.centralNotice.display.less",
 			"+ext.cite.styles": "skinStyles/extensions/Cite/ext.cite.styles.less",
@@ -326,6 +339,7 @@
 			"+ext.MsUpload": "skinStyles/extensions/MsUpload/ext.MsUpload.less",
 			"+ext.relatedArticles.styles": "skinStyles/extensions/RelatedArticles/ext.relatedArticles.styles.less",
 			"+ext.relatedArticles.readMore": "skinStyles/extensions/RelatedArticles/ext.relatedArticles.readMore.less",
+			"+ext.ReplaceTextStyles": "skinStyles/extensions/ReplaceText/ext.ReplaceTextStyles.less",
 			"+ext.RevisionSlider.lazyCss": "skinStyles/extensions/RevisionSlider/ext.RevisionSlider.lazyCss.less",
 			"+ext.RevisionSlider.init": "skinStyles/extensions/RevisionSlider/ext.RevisionSlider.init.less",
 			"+ext.jquery.atwho": "skinStyles/extensions/SemanticMediaWiki/ext.jquery.atwho.less",
@@ -399,6 +413,8 @@
 			"+ext.translate.statsbar": "skinStyles/extensions/Translate/ext.translate.statsbar.less",
 			"+ext.translate.statstable": "skinStyles/extensions/Translate/ext.translate.statstable.less",
 			"+ext.translate.tag.languages": "skinStyles/extensions/Translate/ext.translate.tag.languages.less",
+			"+ext.TwoColConflict.SplitJs": "skinStyles/extensions/TwoColConflict/ext.TwoColConflict.SplitJs.less",
+			"+ext.TwoColConflict.SplitCss": "skinStyles/extensions/TwoColConflict/ext.TwoColConflict.SplitCss.less",
 			"+ext.uls.common": "skinStyles/extensions/UniversalLanguageSelector/ext.uls.common.less",
 			"+ext.uls.compactlinks": "skinStyles/extensions/UniversalLanguageSelector/ext.uls.compactlinks.less",
 			"+ext.uls.displaysettings": "skinStyles/extensions/UniversalLanguageSelector/ext.uls.displaysettings.less",
@@ -467,7 +483,7 @@
 			"+oojs-ui-widgets": "skinStyles/ooui/oojs-ui-widgets.less",
 			"+oojs-ui-windows": "skinStyles/ooui/oojs-ui-windows.less",
 			"+jquery.ui": "skinStyles/jquery.ui/smoothness/jquery.ui.theme.less",
-			"+@wikimedia/codex": "skinStyles/codex/codex-styles.less"
+			"+@wikimedia/codex": "skinStyles/codex/codex.styles.less"
 		}
 	},
 	"config_prefix": "wgCitizen",

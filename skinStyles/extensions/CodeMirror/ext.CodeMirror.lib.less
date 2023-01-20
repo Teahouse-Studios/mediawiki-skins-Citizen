@@ -24,19 +24,19 @@
 	--color-syntax-pink: @color-syntax-pink;
 	--color-syntax-violet: @color-syntax-violet;
 	--color-syntax-grey: @color-syntax-grey;
-	background-color: var( --color-surface-1 );
+	background-color: var( --color-surface-0 );
 	color: var( --color-base );
 
 	&-scrollbar,
 	&-gutter {
 		&-filler {
-			background-color: var( --color-surface-1 );
+			background-color: var( --color-surface-0 );
 		}
 	}
 
 	&-gutters {
 		border-color: transparent;
-		background-color: var( --color-surface-1 );
+		background-color: var( --color-surface-0 );
 	}
 
 	&-linenumber {
@@ -62,6 +62,26 @@
 
 	&-ruler {
 		border-left-color: var( --border-color-base );
+	}
+
+	&-composing {
+		border-bottom-color: var( --border-color-base );
+	}
+
+	&-selected {
+		background: var( --background-color-primary--hover );
+	}
+
+	&-focused .CodeMirror-selected {
+		background: var( --background-color-primary--active );
+	}
+
+	&-line {
+		&::selection,
+		> span::selection,
+		> span > span::selection {
+			background: var( --background-color-primary--active );
+		}
 	}
 }
 
@@ -177,26 +197,6 @@
 
 		&-invalidchar {
 			color: var( --color-destructive );
-		}
-	}
-
-	&-composing {
-		border-bottom-color: var( --border-color-base );
-	}
-
-	&-selected {
-		background: var( --background-color-primary--hover );
-	}
-
-	&-focused .CodeMirror-selected {
-		background: var( --background-color-primary--active );
-	}
-
-	&-line {
-		&::selection,
-		> span::selection,
-		> span > span::selection {
-			background: var( --background-color-primary--active );
 		}
 	}
 }

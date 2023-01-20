@@ -70,11 +70,18 @@ function convertDataToResults( data ) {
 	const getDescription = ( item ) => {
 		switch ( descriptionSource ) {
 			case 'wikidata':
+				/* eslint-disable-next-line es-x/no-symbol-prototype-description */
 				return item.description || '';
 			case 'textextracts':
 				return item.extract || '';
 			case 'pagedescription':
-				return item.pageprops.description.slice( 0, 60 ) + '...' || '';
+				/* eslint-disable es-x/no-symbol-prototype-description */
+				if ( item.pageprops && item.pageprops.description ) {
+					return item.pageprops.description.slice( 0, 60 ) + '...';
+					/* eslint-enable es-x/no-symbol-prototype-description */
+				} else {
+					return '';
+				}
 		}
 	};
 
@@ -96,7 +103,7 @@ function convertDataToResults( data ) {
 			id: data[ i ].pageid,
 			key: data[ i ].title,
 			title: getDisplayTitle( data[ i ] ),
-			description: getDescription( data[ i ] )
+			desc: getDescription( data[ i ] )
 		};
 		if ( data[ i ].thumbnail && data[ i ].thumbnail.source ) {
 			results[ i ].thumbnail = data[ i ].thumbnail.source;
